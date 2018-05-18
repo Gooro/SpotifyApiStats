@@ -4,7 +4,6 @@
 
 class mainController {
     constructor($scope: mainInterface) {
-
     }
 }
 

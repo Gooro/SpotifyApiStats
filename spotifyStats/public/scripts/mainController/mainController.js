@@ -1,5 +1,6 @@
 var mainController = /** @class */ (function () {
     function mainController($scope) {
+        console.log("xDDD");
     }
     return mainController;
 }());

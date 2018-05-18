@@ -1,7 +1,7 @@
-﻿var app = angular.module('website', ['ui.router', 'toastr', 'ngCookies']);
+﻿var app = angular.module('spotifyStats', []);
 
 
-app.service('authInterceptor', function ($q, $state) {
+app.service('authInterceptor', function ($q) {
 });
 
 app.config(['$httpProvider', function ($httpProvider) {
