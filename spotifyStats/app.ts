@@ -9,6 +9,12 @@ import users from './routes/user';
 
 var app = express();
 
+const httpsOption = {
+    
+
+}
+
+
 /** * @description id clienta pobierane z spotify developer console */
 var clientId: string = "clientId";
 /** * @description secret key pobierany z spotify developer console */
