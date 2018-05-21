@@ -1,1 +1,119 @@
-﻿*{margin: 0; padding:0}
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+
+body {
+    overflow: hidden;
+    font-size: 16px;
+    font-family: 'Merriweather Sans', sans-serif;
+    width: 120vw;
+    height: 120vh;
+    position: absolute;
+    left: -10vw;
+    top: -10vh;
+    transition-timing-function: ease-in-out;
+
+    * {
+        z-index: 2;
+    }
+
+
+
+    .app {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: -moz-linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background: linear-gradient(45deg, #00ce83 0%,#013165 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            animation: dynamicGradient 20s infinite alternate;
+            z-index: 0;
+        }
+    }
+}
+
+hr {
+    width: 80%;
+    margin: 0px auto;
+    border: 1px solid;
+}
+
+button {
+    cursor: pointer;
+    background: rgba(29, 185, 84, 1);
+    border-radius: 50px;
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid #1db954;
+}
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    color: #1e3264;
+    height: 100%;
+    padding: 10vw 10vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+
+    div {
+        padding: 5vh 10%;
+        background-color: rgba(255,255,255,0.2);
+        width: 120%;
+
+        h2 {
+            font-size: 2em;
+            color: #1db954;
+            text-transform: uppercase;
+            width: 80%;
+            margin: auto;
+            background: #1e3264;
+        }
+
+        p {
+            font-size: 3em;
+            padding: 10px 0;
+            width: 80%;
+            margin: auto;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            margin-top: 4vh;
+            transition: 1s;
+
+            &:hover {
+                background: rgba(29, 185, 84, 0);
+            }
+        }
+    }
+}
+
+@keyframes dynamicGradient {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

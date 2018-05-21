@@ -2,17 +2,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<title>Spotify Stats</title>
+    <meta charset="utf-8" />
+    <title>Your personal Spotify Stats</title>
 
-	<link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+    <link rel="stylesheet" href="lib/anicollection.css">
+
 </head>
-<body ng-app="spotifyStats" ng-controller="mainController">
-	<h1>Spotify Stats</h1>
+<body ng-app="spotifyStats" ng-controller="mainController" class="js-tilt" data-tilt>
+    <div ui-view class="app">
+    </div>
 
-	<script src="lib/angular.min.js"></script>
-	<script src="scripts/app.js"></script>
-	<script src="scripts/mainController/mainController.js"></script>
+    <!--scripts-->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="lib/anijs.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/mainController/mainController.js"></script>
 </body>
 
 </html>
