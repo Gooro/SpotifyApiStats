@@ -151,8 +151,10 @@ button {
     .home header h1 {
       font-size: 4em; }
     .home header .avatar div {
-      position: relative; }
+      position: relative;
+      transform-style: preserve-3d; }
       .home header .avatar div img {
+        transform: translateZ(60px);
         width: 300px;
         margin-top: 30px;
         border-radius: 400px; }
@@ -205,22 +207,28 @@ button {
       .home .tops .top h2 {
         text-align: left;
         font-size: 2em; }
-      .home .tops .top .artistcover span {
-        font-size: 1.5em;
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        left: 30px;
-        right: -30px;
-        background-color: white; }
-      .home .tops .top .songcover span {
-        font-size: 1.5em;
-        display: block;
-        position: absolute;
-        bottom: 10px;
-        right: 30px;
-        left: -30px;
-        background-color: white; }
+      .home .tops .top .artistcover {
+        transform-style: preserve-3d; }
+        .home .tops .top .artistcover span {
+          transform: translateZ(60px);
+          font-size: 1.5em;
+          display: block;
+          position: absolute;
+          bottom: 10px;
+          left: 30px;
+          right: -30px;
+          background-color: white; }
+      .home .tops .top .songcover {
+        transform-style: preserve-3d; }
+        .home .tops .top .songcover span {
+          transform: translateZ(60px);
+          font-size: 1.5em;
+          display: block;
+          position: absolute;
+          bottom: 10px;
+          right: 30px;
+          left: -30px;
+          background-color: white; }
       .home .tops .top img {
         width: 400px;
         border: 2px solid; }

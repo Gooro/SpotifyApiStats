@@ -191,8 +191,10 @@ button {
 
             div {
                 position: relative;
+                transform-style: preserve-3d;
 
                 img {
+                    transform: translateZ(60px);
                     width: 300px;
                     margin-top: 30px;
                     border-radius: 400px;
@@ -276,7 +278,10 @@ button {
             }
 
             .artistcover {
+                transform-style: preserve-3d;
+
                 span {
+                    transform: translateZ(60px);
                     font-size: 1.5em;
                     display: block;
                     position: absolute;
@@ -289,7 +294,10 @@ button {
 
 
             .songcover {
+                transform-style: preserve-3d;
+
                 span {
+                    transform: translateZ(60px);
                     font-size: 1.5em;
                     display: block;
                     position: absolute;
