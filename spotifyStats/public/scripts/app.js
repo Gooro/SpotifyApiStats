@@ -21,6 +21,8 @@ app.run(function ($rootScope, $state) {
         $.getScript('../lib/tilt.jquery.min.js', function () {
             $.getScript('../scripts/tilt.js');
             console.log("tilt.js works");
+            $.getScript('../lib/jquery.onepage-scroll.min.js');
+            console.log("scroll.js works");
         });
     });
 });

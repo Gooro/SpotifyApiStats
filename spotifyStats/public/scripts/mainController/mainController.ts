@@ -11,7 +11,7 @@ class mainController {
             );
         }
     }
- 
+    
 }
 
 app.controller('mainController', mainController);

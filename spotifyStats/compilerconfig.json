@@ -2,5 +2,9 @@
   {
     "outputFile": "public/styles/style.css",
     "inputFile": "public/styles/style.scss"
+  },
+  {
+    "outputFile": "public/lib/jquery.onepage-scroll.min.es5.js",
+    "inputFile": "public/lib/jquery.onepage-scroll.min.js"
   }
 ]

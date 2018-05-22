@@ -9,12 +9,13 @@ var querystring = require("query-string");
 var index_1 = require("./routes/index");
 var user_1 = require("./routes/user");
 var app = express();
+var httpsOption = {};
 /** * @description id clienta pobierane z spotify developer console */
-var clientId = 'eda7cb802a37453190d0d66551507e64';
+var clientId = "clientId";
 /** * @description secret key pobierany z spotify developer console */
-var secretKey = '54f6b6ea4cbe4c7586401bf407b37bb8';
+var secretKey = 'secretKey';
 /** * @description przekierowanie do stronny jeśli callback będzie success */
-var redirectUri = 'https://localhost:1337/sample';
+var redirectUri = 'redirectUri';
 app.use(corse());
 //Http body to JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));

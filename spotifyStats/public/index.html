@@ -5,11 +5,16 @@
     <meta charset="utf-8" />
     <title>Your personal Spotify Stats</title>
 
-    <link rel="stylesheet" type="text/css" href="styles/style.min.css" />
     <link rel="stylesheet" href="lib/anicollection.css">
+    <link rel="stylesheet" href="lib/onepage-scroll.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+
 
 </head>
 <body ng-app="spotifyStats" ng-controller="mainController" class="js-tilt" data-tilt>
+    <nav data-anijs="if: load, on: window, do: bounceInDown animated">
+        <img src="img/logo.png"/>
+    </nav>
     <div ui-view class="app">
     </div>
 
@@ -20,6 +25,7 @@
     <script src="lib/anijs.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/mainController/mainController.js"></script>
+    <!--<script src="lib/scroll.js"></script>-->
 </body>
 
 </html>

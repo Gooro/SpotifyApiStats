@@ -6,6 +6,7 @@
     <Name>spotifyStats</Name>
     <RootNamespace>spotifyStats</RootNamespace>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <ToolsVersionPromptShown>2.6</ToolsVersionPromptShown>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -23,7 +24,7 @@
     <NodejsPort>1337</NodejsPort>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>true</StartWebBrowser>
   </PropertyGroup>
@@ -48,7 +49,17 @@
       <SubType>Content</SubType>
       <DependentUpon>compilerconfig.json</DependentUpon>
     </Content>
+    <Content Include="public\img\avatar.jpg" />
+    <Content Include="public\img\background.png" />
+    <Content Include="public\img\cover.jpg" />
+    <Content Include="public\img\cover2.jpg" />
+    <Content Include="public\img\logo.png" />
+    <Content Include="public\img\splash.png" />
+    <Content Include="public\img\splash2.png" />
+    <Content Include="public\img\splash3.png" />
+    <Content Include="public\img\splash4.png" />
     <Content Include="public\lib\anicollection.css" />
+    <Content Include="public\lib\onepage-scroll.css" />
     <Content Include="public\login.html" />
     <Content Include="public\home.html" />
     <Content Include="public\index.html">
@@ -87,6 +98,7 @@
     <Compile Include="public\lib\angular.min.js" />
     <Compile Include="public\lib\anijs.js" />
     <Compile Include="public\lib\jquery-3.3.1.min.js" />
+    <Compile Include="public\lib\jquery.onepage-scroll.min.js" />
     <Compile Include="public\lib\tilt.jquery.min.js" />
     <Compile Include="public\scripts\tilt.js">
       <SubType>Code</SubType>
