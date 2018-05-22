@@ -26,6 +26,8 @@ app.run(function ($rootScope, $state) {
     $rootScope.$on("$viewContentLoaded", function () {
         (<any>window).AniJS.run();
         $.getScript('../lib/tilt.jquery.min.js', function () {
+            $.getScript('../jquery.hover3d.js');
+            console.log("simpletilt.js works")
             $.getScript('../scripts/tilt.js');
             console.log("tilt.js works")
             $.getScript('../lib/jquery.onepage-scroll.min.js');

@@ -98,6 +98,7 @@
     <Compile Include="public\lib\angular.min.js" />
     <Compile Include="public\lib\anijs.js" />
     <Compile Include="public\lib\jquery-3.3.1.min.js" />
+    <Compile Include="public\lib\jquery.hover3d.js" />
     <Compile Include="public\lib\jquery.onepage-scroll.min.js" />
     <Compile Include="public\lib\tilt.jquery.min.js" />
     <Compile Include="public\scripts\tilt.js">

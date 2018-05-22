@@ -4,6 +4,14 @@
     maxGlare: 0
 });
 
+var card = $(".simpletilt");
+
+$(document).on("mousemove", function (e) {
+    var ax = -($(window).innerWidth() / 2 - e.pageX) / 80;
+    var ay = ($(window).innerHeight() / 2 - e.pageY) / 60;
+    card.attr("style", "transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-webkit-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-moz-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg)");
+});
+
 $(".home").onepage_scroll({
     sectionContainer: ".onepage",     // sectionContainer accepts any kind of selector in case you don't want to use section
     easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
