@@ -10,9 +10,11 @@
 
             <hr data-anijs="if: load, on: window, do: zoomInUp animated" class="tiltInner" />
             <div class="avatar">
-                <h2 class="tiltInner">First Name Name</h2>
+				<h2 class="tiltInner">
+					{{userData.display_name}}
+				</h2>
                 <div class="tiltElement">
-                    <img class="tiltInner" src="img/avatar.jpg" />
+                    <img class="tiltInner" ng-src='userData.images["0"].url' />
                 </div>
             </div>
         </header>
@@ -54,16 +56,9 @@
             <div class="top tiltElement top-artist">
                 <h2 class="tiltInner">Top Artists</h2>
                 <ol>
-                    <li><span>1</span>Arctic Monkeys </li>
-                    <li><span>2</span>Some Artist  </li>
-                    <li><span>3</span>Some Artist </li>
-                    <li>Some Artist </li>
-                    <li>Arctic Monkeys </li>
-                    <li>Lorem Songum</li>
-                    <li>S Longum</li>
-                    <li>Somort</li>
-                    <li>Arctic Monku5</li>
-                    <li>Some Arm Songum</li>
+                <li ng-repeat="x in musicData.items">
+					{{x.name}}
+				</li>
                 </ol>
             </div>
             <div class="top tiltElement top-song">

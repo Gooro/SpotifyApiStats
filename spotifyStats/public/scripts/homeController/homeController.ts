@@ -1,15 +1,14 @@
 ﻿interface homeInterface {
     userData: any;
+    musicData: any;
 }
 
 class homeController {
     constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService) {
 
 
-        $http.get("http://localhost:1337/userdata").then(value => {
-            $scope.userData = value;
-            console.log($scope.userData);
-        }); 
+        $http.get("http://localhost:1337/userdata").then(value => { $scope.userData = value.data; console.log(value.data) }); 
+        $http.get("http://localhost:1337/musicdata").then(value => { $scope.musicData = value.data; console.log(value.data)});
 
 
 

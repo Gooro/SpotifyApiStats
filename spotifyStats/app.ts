@@ -9,15 +9,17 @@ import routes from './routes/index';
 import users from './routes/user';
 import { functionDeclaration } from 'babel-types';
 
+import user from './routes/user';
 var app = express();
 
-var clientId: string = 'clientId';
-var secretKey: string = 'secretKey'; 
+var clientId: string = 'eda7cb802a37453190d0d66551507e64';
+var secretKey: string = '54f6b6ea4cbe4c7586401bf407b37bb8';
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri: string = 'http://localhost:1337/callback';
 
 var stateKey = 'spotify_auth_state';
 let userData;
+let musicData;
 
 //var cors = function (req, res, next) {
 
@@ -57,6 +59,17 @@ app.get('/login', function (req, res, next) {
         '&redirect_uri=' + encodeURIComponent(redirectUri));
 });
 
+
+function extend(target) {
+    var sources = [].slice.call(arguments, 1);
+    sources.forEach(function (source) {
+        for (var prop in source) {
+            target[prop] = source[prop];
+        }
+    });
+    return target;
+}
+
 app.get('/callback', function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
@@ -86,7 +99,16 @@ app.get('/callback', function (req, res) {
                 json: true
             };
 
+            var artist = {
+                url: 'https://api.spotify.com/v1/me/top/artists',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
             // use the access token to access the Spotify Web API
+            request.get(artist, function (error, response, body) {
+                musicData = body;
+            });
+
             request.get(options, function (error, response, body) {
                 userData = body;
                 res.redirect("http://localhost:1337/#/home");
@@ -96,8 +118,13 @@ app.get('/callback', function (req, res) {
 });
 
 
+
 app.get("/userdata", function (req, res) {
     res.send(userData);
+});
+
+app.get("/musicdata", function (req, res) {
+    res.send(musicData);
 });
 
 // view engine setup

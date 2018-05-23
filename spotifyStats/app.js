@@ -15,6 +15,7 @@ var secretKey = '54f6b6ea4cbe4c7586401bf407b37bb8';
 var redirectUri = 'http://localhost:1337/callback';
 var stateKey = 'spotify_auth_state';
 var userData;
+var musicData;
 //var cors = function (req, res, next) {
 //    // Website you wish to allow to connect
 //    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1337');
@@ -42,6 +43,15 @@ app.get('/login', function (req, res, next) {
         (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
         '&redirect_uri=' + encodeURIComponent(redirectUri));
 });
+function extend(target) {
+    var sources = [].slice.call(arguments, 1);
+    sources.forEach(function (source) {
+        for (var prop in source) {
+            target[prop] = source[prop];
+        }
+    });
+    return target;
+}
 app.get('/callback', function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
@@ -65,7 +75,15 @@ app.get('/callback', function (req, res) {
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             };
+            var artist = {
+                url: 'https://api.spotify.com/v1/me/top/artists',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            };
             // use the access token to access the Spotify Web API
+            request.get(artist, function (error, response, body) {
+                musicData = body;
+            });
             request.get(options, function (error, response, body) {
                 userData = body;
                 res.redirect("http://localhost:1337/#/home");
@@ -75,6 +93,9 @@ app.get('/callback', function (req, res) {
 });
 app.get("/userdata", function (req, res) {
     res.send(userData);
+});
+app.get("/musicdata", function (req, res) {
+    res.send(musicData);
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
