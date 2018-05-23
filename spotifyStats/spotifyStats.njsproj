@@ -25,7 +25,7 @@
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>true</StartWebBrowser>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,7 +59,6 @@
     <Content Include="public\styles\style.scss">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="ssl\generate-certificate.sh" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -68,7 +67,6 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ssl\" />
     <Folder Include="public\" />
     <Folder Include="public\img\" />
     <Folder Include="public\lib\" />

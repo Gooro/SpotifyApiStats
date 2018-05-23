@@ -5,29 +5,73 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require('body-parser');
 var corse = require('cors');
-var querystring = require("query-string");
+var request = require('request');
 var index_1 = require("./routes/index");
 var user_1 = require("./routes/user");
 var app = express();
 /** * @description id clienta pobierane z spotify developer console */
-var clientId = 'eda7cb802a37453190d0d66551507e64';
+var clientId = "eda7cb802a37453190d0d66551507e64";
 /** * @description secret key pobierany z spotify developer console */
-var secretKey = '54f6b6ea4cbe4c7586401bf407b37bb8';
+var secretKey = "54f6b6ea4cbe4c7586401bf407b37bb8";
 /** * @description przekierowanie do stronny jeśli callback będzie success */
-var redirectUri = 'https://localhost:1337/sample';
-app.use(corse());
+var redirectUri = 'http://localhost:1337/callback';
+var stateKey = 'spotify_auth_state';
+//var cors = function (req, res, next) {
+//    // Website you wish to allow to connect
+//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1337');
+//    // Request methods you wish to allow
+//    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//    // Request headers you wish to allow
+//    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//    // Set to true if you need the website to include cookies in the requests sent
+//    // to the API (e.g. in case you use sessions)
+//    res.setHeader('Access-Control-Allow-Credentials', 'true');
+//    // Pass to next layer of middleware
+//    next();
+//};
+var cors = require('cors');
+// use it before all route definitions
+app.use(cors({ origin: 'http://localhost:1337' }));
 //Http body to JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.get('/login', function (req, res) {
+app.get('/login', function (req, res, next) {
     var scopes = 'user-read-private user-read-email';
-    res.redirect('https://accounts.spotify.com/authorize' +
-        querystring.stringify({
-            response_type: 'code',
-            client_id: clientId,
-            scope: scopes,
-            redirect_uri: redirectUri
-        }));
+    res.send('https://accounts.spotify.com/authorize' +
+        '?response_type=code' +
+        '&client_id=' + clientId +
+        (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+        '&redirect_uri=' + encodeURIComponent(redirectUri));
+});
+app.get('/callback', function (req, res) {
+    var code = req.query.code || null;
+    var state = req.query.state || null;
+    var authOptions = {
+        url: 'https://accounts.spotify.com/api/token',
+        form: {
+            code: code,
+            redirect_uri: redirectUri,
+            grant_type: 'authorization_code'
+        },
+        headers: {
+            'Authorization': 'Basic ' + (new Buffer(clientId + ':' + secretKey).toString('base64'))
+        },
+        json: true
+    };
+    request.post(authOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var access_token = body.access_token, refresh_token = body.refresh_token;
+            var options = {
+                url: 'https://api.spotify.com/v1/me',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            };
+            // use the access token to access the Spotify Web API
+            request.get(options, function (error, response, body) {
+                res.redirect("http://localhost:1337", 200);
+            });
+        }
+    });
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
