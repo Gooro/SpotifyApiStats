@@ -51,7 +51,8 @@ body {
 
     .tiltElement {
         transform-style: preserve-3d;
-        .tiltInner{
+
+        .tiltInner {
             transform: translateZ(60px);
         }
     }
@@ -165,11 +166,20 @@ button {
     text-align: center;
 
     .onepage {
-        padding-top: 60px;
+        padding: 60px 0;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         flex-direction: column;
+
+        .backgroundText {
+            position: absolute;
+            left: 4vw;
+            bottom: 10vh;
+            font-size: 6em;
+            z-index: -1;
+            opacity: 0.3;
+        }
     }
 
 
@@ -320,6 +330,57 @@ button {
                 border: 2px solid;
             }
         }
+    }
+
+    .tops-list {
+        .top {
+            width: 40%;
+
+            ol {
+                font-size: 1.4em;
+
+                li {
+                    list-style-position: outside;
+                    list-style-type: none;
+
+                    span {
+                    }
+                }
+            }
+        }
+
+        .top-artist {
+            ol li {
+                text-align: right;
+
+                span {
+                    float: left;
+                }
+            }
+        }
+
+        .top-song {
+            h2 {
+                text-align: right;
+            }
+
+            ol li {
+                text-align: left;
+
+                span {
+                    float: right;
+                }
+            }
+        }
+    }
+
+    .topTen {
+        background-image: url(../img/splash5.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 120%;
+        margin-left: -10%;
     }
 
     .topgenre {

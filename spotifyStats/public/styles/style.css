@@ -133,11 +133,18 @@ button {
   justify-content: center;
   text-align: center; }
   .home .onepage {
-    padding-top: 60px;
+    padding: 60px 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column; }
+    .home .onepage .backgroundText {
+      position: absolute;
+      left: 4vw;
+      bottom: 10vh;
+      font-size: 6em;
+      z-index: -1;
+      opacity: 0.3; }
   .home header {
     position: relative; }
     .home header::before {
@@ -230,6 +237,30 @@ button {
       .home .tops .top img {
         width: 400px;
         border: 2px solid; }
+  .home .tops-list .top {
+    width: 40%; }
+    .home .tops-list .top ol {
+      font-size: 1.4em; }
+      .home .tops-list .top ol li {
+        list-style-position: outside;
+        list-style-type: none; }
+  .home .tops-list .top-artist ol li {
+    text-align: right; }
+    .home .tops-list .top-artist ol li span {
+      float: left; }
+  .home .tops-list .top-song h2 {
+    text-align: right; }
+  .home .tops-list .top-song ol li {
+    text-align: left; }
+    .home .tops-list .top-song ol li span {
+      float: right; }
+  .home .topTen {
+    background-image: url(../img/splash5.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 120%;
+    margin-left: -10%; }
   .home .topgenre {
     justify-content: center;
     align-items: center;
