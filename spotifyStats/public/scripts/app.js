@@ -1,6 +1,5 @@
 var app = angular.module('spotifyStats', ['ui.router']);
-app.service('authInterceptor', function ($q) {
-});
+app.service('authInterceptor', function ($q) { });
 app.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
     $httpProvider.config;
     $urlRouterProvider.otherwise('/login');
