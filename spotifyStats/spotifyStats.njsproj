@@ -6,7 +6,7 @@
     <Name>spotifyStats</Name>
     <RootNamespace>spotifyStats</RootNamespace>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
-    <ToolsVersionPromptShown>2.6</ToolsVersionPromptShown>
+    <ToolsVersionPromptShown>2.8</ToolsVersionPromptShown>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -24,7 +24,7 @@
     <NodejsPort>1337</NodejsPort>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>true</StartWebBrowser>
   </PropertyGroup>
@@ -37,6 +37,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="public\scripts\app.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\scripts\homeController\homeController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\scripts\logInController\logInController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\scripts\mainController\mainController.ts">
@@ -82,6 +88,8 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="public\scripts\homeController\" />
+    <Folder Include="public\scripts\logInController\" />
     <Folder Include="ssl\" />
     <Folder Include="public\" />
     <Folder Include="public\img\" />
@@ -100,7 +108,6 @@
     <Compile Include="public\lib\jquery-3.3.1.min.js" />
     <Compile Include="public\lib\jquery.hover3d.js" />
     <Compile Include="public\lib\jquery.onepage-scroll.min.js" />
-    <Compile Include="public\lib\tilt.jquery.min.js" />
     <Compile Include="public\scripts\tilt.js">
       <SubType>Code</SubType>
     </Compile>

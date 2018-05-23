@@ -11,10 +11,7 @@
 
 
 </head>
-<body ng-app="spotifyStats" ng-controller="mainController" class="js-tilt" data-tilt >
-    <nav data-anijs="if: load, on: window, do: bounceInDown animated">
-        <img src="img/logo.png"/>
-    </nav>
+<body ng-app="spotifyStats" ng-controller="mainController" class="mainTilt" >
     <div ui-view class="app">
     </div>
 
@@ -23,8 +20,13 @@
     <script src="lib/angular-ui-router.min.js"></script>
     <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/anijs.js"></script>
+    <script src="lib/jquery.onepage-scroll.min.js"></script>
+    <script src="lib/jquery.hover3d.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/mainController/mainController.js"></script>
+    <script src="scripts/homeController/homeController.js"></script>
+    <script src="scripts/loginController/loginController.js"></script>
+
     <!--<script src="lib/scroll.js"></script>-->
 </body>
 

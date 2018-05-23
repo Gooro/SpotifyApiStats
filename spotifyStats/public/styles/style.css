@@ -41,6 +41,10 @@ body {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #ffc04f 0%, #f8189c 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+  body .tiltElement {
+    transform-style: preserve-3d; }
+    body .tiltElement .tiltInner {
+      transform: translateZ(60px); }
 
 hr {
   width: 80%;
@@ -129,7 +133,7 @@ button {
   justify-content: center;
   text-align: center; }
   .home .onepage {
-    padding-top: 120px;
+    padding-top: 60px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -151,10 +155,8 @@ button {
     .home header h1 {
       font-size: 4em; }
     .home header .avatar div {
-      position: relative;
-      transform-style: preserve-3d; }
+      position: relative; }
       .home header .avatar div img {
-        transform: translateZ(60px);
         width: 300px;
         margin-top: 30px;
         border-radius: 400px; }
@@ -192,6 +194,8 @@ button {
         font-size: 3em;
         position: relative;
         margin-bottom: 50px; }
+        .home .tops .top h1 span {
+          display: block; }
         .home .tops .top h1::before {
           content: '';
           background-image: url(../img/splash3.png);
@@ -207,28 +211,22 @@ button {
       .home .tops .top h2 {
         text-align: left;
         font-size: 2em; }
-      .home .tops .top .artistcover {
-        transform-style: preserve-3d; }
-        .home .tops .top .artistcover span {
-          transform: translateZ(60px);
-          font-size: 1.5em;
-          display: block;
-          position: absolute;
-          bottom: 10px;
-          left: 30px;
-          right: -30px;
-          background-color: white; }
-      .home .tops .top .songcover {
-        transform-style: preserve-3d; }
-        .home .tops .top .songcover span {
-          transform: translateZ(60px);
-          font-size: 1.5em;
-          display: block;
-          position: absolute;
-          bottom: 10px;
-          right: 30px;
-          left: -30px;
-          background-color: white; }
+      .home .tops .top .artistcover span {
+        font-size: 1.5em;
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        left: 30px;
+        right: -30px;
+        background-color: white; }
+      .home .tops .top .songcover span {
+        font-size: 1.5em;
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: 30px;
+        left: -30px;
+        background-color: white; }
       .home .tops .top img {
         width: 400px;
         border: 2px solid; }
@@ -240,6 +238,8 @@ button {
       font-size: 3em;
       width: 30%;
       text-align: right; }
+      .home .topgenre h1 span {
+        color: #1db954; }
     .home .topgenre .chart {
       text-align: left;
       width: 40%;

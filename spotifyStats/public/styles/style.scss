@@ -48,6 +48,13 @@ body {
         background: -webkit-linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
+
+    .tiltElement {
+        transform-style: preserve-3d;
+        .tiltInner{
+            transform: translateZ(60px);
+        }
+    }
 }
 
 hr {
@@ -158,7 +165,7 @@ button {
     text-align: center;
 
     .onepage {
-        padding-top: 120px;
+        padding-top: 60px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -191,10 +198,8 @@ button {
 
             div {
                 position: relative;
-                transform-style: preserve-3d;
 
                 img {
-                    transform: translateZ(60px);
                     width: 300px;
                     margin-top: 30px;
                     border-radius: 400px;
@@ -241,6 +246,7 @@ button {
 
         .top-song {
             h1 {
+
                 &::before {
                     transform: rotate(180deg);
                 }
@@ -255,6 +261,11 @@ button {
                 font-size: 3em;
                 position: relative;
                 margin-bottom: 50px;
+
+                span {
+                    display: block;
+                }
+
 
                 &::before {
                     content: '';
@@ -278,10 +289,8 @@ button {
             }
 
             .artistcover {
-                transform-style: preserve-3d;
 
                 span {
-                    transform: translateZ(60px);
                     font-size: 1.5em;
                     display: block;
                     position: absolute;
@@ -294,10 +303,8 @@ button {
 
 
             .songcover {
-                transform-style: preserve-3d;
 
                 span {
-                    transform: translateZ(60px);
                     font-size: 1.5em;
                     display: block;
                     position: absolute;
@@ -324,6 +331,10 @@ button {
             font-size: 3em;
             width: 30%;
             text-align: right;
+
+            span {
+                color: #1db954;
+            }
         }
 
         .chart {
