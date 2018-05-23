@@ -1,1 +1,382 @@
-﻿*{margin: 0; padding:0}
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+
+body {
+    overflow: hidden;
+    font-size: 16px;
+    font-family: 'Merriweather Sans', sans-serif;
+    width: 120vw;
+    height: 120vh;
+    position: absolute;
+    left: -10vw;
+    top: -10vh;
+    transition-timing-function: ease-in-out;
+    letter-spacing: -0.1em;
+
+    * {
+        z-index: 2;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10vh 10vw 0 15vw;
+        background-color: rgba(0,0,0,0.2);
+        width: 100%;
+        z-index: 3;
+
+        img {
+            width: 100px;
+            padding: 10px 0 10px 50px;
+        }
+    }
+
+
+    .app {
+        height: 100%;
+        padding: 120px 10vw;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: -moz-linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg, #ffc04f 0%,#f8189c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+
+hr {
+    width: 80%;
+    margin: 0px auto;
+    border: 1px solid;
+}
+
+button {
+    cursor: pointer;
+    background: rgba(29, 185, 84, 1);
+    border-radius: 50px;
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid #1db954;
+}
+
+
+.login {
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: linear-gradient(45deg, #00ce83 0%,#013165 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        animation: dynamicGradient 20s infinite alternate;
+        z-index: 0;
+    }
+
+    .movingBackground {
+        background-image: url('../img/background.png');
+        animation: movingBackground 20s alternate infinite;
+        animation-timing-function: cubic-bezier(0, 0.03, 0, 0.99);
+        height: 120vh;
+        width: 120vw;
+        position: fixed;
+        background-color: transparent;
+        z-index: 1;
+    }
+
+    display: flex;
+    flex-direction: column;
+    color: #1e3264;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    div {
+        padding: 5vh 10%;
+        background-color: rgba(255,255,255,0.2);
+        width: 120%;
+
+        h2 {
+            font-size: 2em;
+            color: #1db954;
+            text-transform: uppercase;
+            width: 80%;
+            margin: auto;
+            position: relative;
+
+
+            &::before {
+                content: '';
+                background-image: url(../img/splash.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+                width: 50%;
+                height: 100px;
+                position: absolute;
+                left: 25%;
+                top: -25px;
+                z-index: -1;
+            }
+        }
+
+        p {
+            font-size: 3em;
+            padding: 10px 0;
+            width: 80%;
+            margin: auto;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            margin-top: 4vh;
+            transition: 1s;
+
+            &:hover {
+                background: rgba(29, 185, 84, 0);
+            }
+        }
+    }
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    color: #1e3264;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .onepage {
+        padding-top: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+
+    header {
+        position: relative;
+
+        &::before {
+            content: '';
+            background-image: url(../img/splash2.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 100%;
+            height: 194px;
+            position: absolute;
+            left: 10px;
+            top: -25px;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 4em;
+        }
+
+        .avatar {
+
+            div {
+                position: relative;
+                transform-style: preserve-3d;
+
+                img {
+                    transform: translateZ(60px);
+                    width: 300px;
+                    margin-top: 30px;
+                    border-radius: 400px;
+                }
+
+                &::before {
+                    content: '';
+                    background-image: url(../img/splash4.png);
+                    background-position: bottom center;
+                    background-repeat: no-repeat;
+                    background-size: 89%;
+                    width: 100%;
+                    height: 117%;
+                    position: absolute;
+                    left: 0px;
+                    top: 0;
+                    z-index: -1;
+                }
+            }
+        }
+    }
+
+    .controls {
+        width: 80%;
+
+        button {
+            width: 30%;
+            padding: 10px 0;
+
+            &:first-child {
+                border-radius: 50px 0 0 50px;
+            }
+
+            &:last-child {
+                border-radius: 0 50px 50px 0;
+            }
+        }
+    }
+
+    .tops {
+        width: 75%;
+        display: flex;
+        justify-content: space-around;
+
+        .top-song {
+            h1 {
+                &::before {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .top {
+            margin-top: 40px;
+            position: relative;
+
+            h1 {
+                font-size: 3em;
+                position: relative;
+                margin-bottom: 50px;
+
+                &::before {
+                    content: '';
+                    background-image: url(../img/splash3.png);
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: 87%;
+                    width: 120%;
+                    height: 132px;
+                    position: absolute;
+                    left: -53px;
+                    top: -25px;
+                    z-index: -1;
+                }
+            }
+
+
+            h2 {
+                text-align: left;
+                font-size: 2em;
+            }
+
+            .artistcover {
+                transform-style: preserve-3d;
+
+                span {
+                    transform: translateZ(60px);
+                    font-size: 1.5em;
+                    display: block;
+                    position: absolute;
+                    bottom: 10px;
+                    left: 30px;
+                    right: -30px;
+                    background-color: rgba(255,255,255,1);
+                }
+            }
+
+
+            .songcover {
+                transform-style: preserve-3d;
+
+                span {
+                    transform: translateZ(60px);
+                    font-size: 1.5em;
+                    display: block;
+                    position: absolute;
+                    bottom: 10px;
+                    right: 30px;
+                    left: -30px;
+                    background-color: rgba(255,255,255,1);
+                }
+            }
+
+            img {
+                width: 400px;
+                border: 2px solid;
+            }
+        }
+    }
+
+    .topgenre {
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+
+        h1 {
+            font-size: 3em;
+            width: 30%;
+            text-align: right;
+        }
+
+        .chart {
+            text-align: left;
+            width: 40%;
+            height: 300px;
+            padding: 30px;
+
+            .progressbar {
+                height: 30px;
+                width: 100%;
+                border: 2px solid;
+
+                div {
+                    padding-left: 10px;
+                    height: 100%;
+                    line-height: 27px;
+                    width: 34%;
+                    background-color: #1db954;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: -26px;
+                        width: 27px;
+                        height: 100%;
+                        -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%);
+                        clip-path: polygon(0 0, 100% 100%, 0 100%);
+                        background-color: #1db954;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes dynamicGradient {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes movingBackground {
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 100% 100%;
+    }
+}

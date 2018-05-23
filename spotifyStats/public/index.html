@@ -2,17 +2,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<title>Spotify Stats</title>
+    <meta charset="utf-8" />
+    <title>Your personal Spotify Stats</title>
 
-	<link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+    <link rel="stylesheet" href="lib/anicollection.css">
+    <link rel="stylesheet" href="lib/onepage-scroll.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.min.css" />
+
+
 </head>
-<body ng-app="spotifyStats" ng-controller="mainController">
-	<h1>Spotify Stats</h1>
-	<button ng-click="testMessage()">Test button</button>
-	<script src="lib/angular.min.js"></script>
-	<script src="scripts/app.js"></script>
-	<script src="scripts/mainController/mainController.js"></script>
+<body ng-app="spotifyStats" ng-controller="mainController" class="js-tilt" data-tilt >
+    <nav data-anijs="if: load, on: window, do: bounceInDown animated">
+        <img src="img/logo.png"/>
+    </nav>
+    <div ui-view class="app">
+    </div>
+
+    <!--scripts-->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="lib/anijs.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/mainController/mainController.js"></script>
+    <!--<script src="lib/scroll.js"></script>-->
 </body>
 
 </html>
