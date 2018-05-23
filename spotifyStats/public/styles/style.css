@@ -261,6 +261,8 @@ button {
     background-size: cover;
     width: 120%;
     margin-left: -10%; }
+    .home .topTen .backgroundText {
+      left: 14vw; }
   .home .topgenre {
     justify-content: center;
     align-items: center;

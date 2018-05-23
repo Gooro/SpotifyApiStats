@@ -13,19 +13,10 @@ var homeController = /** @class */ (function () {
             var onepagescroll = window.$(".home");
             onepagescroll.onepage_scroll({
                 sectionContainer: ".onepage",
-                easing: "ease",
-                // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+                easing: "ease-in-out",
                 animationTime: 600,
-                pagination: true,
-                updateURL: false,
-                beforeMove: function (index) { },
-                afterMove: function (index) { },
-                loop: false,
+                loop: true,
                 keyboard: true,
-                responsiveFallback: false,
-                // you want the responsive fallback to be triggered. For example, set this to 600 and whenever
-                // the browser's width is less than 600, the fallback will kick in.
-                direction: "vertical" // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
             });
         });
     }
