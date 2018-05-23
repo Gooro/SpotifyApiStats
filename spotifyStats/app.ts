@@ -19,56 +19,27 @@ var redirectUri: string = 'http://localhost:1337/callback';
 
 var stateKey = 'spotify_auth_state';
 let userData;
-let musicData;
+let topArtistData;
+let topTracksData;
 
-//var cors = function (req, res, next) {
-
-//    // Website you wish to allow to connect
-//    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1337');
-
-//    // Request methods you wish to allow
-//    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//    // Request headers you wish to allow
-//    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-//    // Set to true if you need the website to include cookies in the requests sent
-//    // to the API (e.g. in case you use sessions)
-//    res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-//    // Pass to next layer of middleware
-//    next();
-//};
 
 var cors = require('cors');
 
 // use it before all route definitions
-app.use(cors({ origin: 'http://localhost:1337' }));
-
+app.use(cors());
 
 //Http body to JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/login', function (req, res, next) {
-    var scopes = 'user-read-private user-read-email user-top-read user-library-read user-read-recently-played';
+    var scopes = 'user-read-private user-read-email user-library-read user-read-recently-played user-top-read';
     res.send('https://accounts.spotify.com/authorize' +
         '?response_type=code' +
         '&client_id=' + clientId +
         (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
         '&redirect_uri=' + encodeURIComponent(redirectUri));
 });
-
-
-function extend(target) {
-    var sources = [].slice.call(arguments, 1);
-    sources.forEach(function (source) {
-        for (var prop in source) {
-            target[prop] = source[prop];
-        }
-    });
-    return target;
-}
 
 app.get('/callback', function (req, res) {
     var code = req.query.code || null;
@@ -99,14 +70,26 @@ app.get('/callback', function (req, res) {
                 json: true
             };
 
-            var artist = {
+            var topArtist = {
                 url: 'https://api.spotify.com/v1/me/top/artists',
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             }
+
+            var topTracks = {
+                url: 'https://api.spotify.com/v1/me/top/tracks',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
             // use the access token to access the Spotify Web API
-            request.get(artist, function (error, response, body) {
-                musicData = body;
+
+
+            request.get(topArtist, function (error, response, body) {
+                topArtistData = body;
+            });   
+
+            request.get(topTracks, function (error, response, body) {
+                topTracksData = body;
             });
 
             request.get(options, function (error, response, body) {
@@ -123,8 +106,12 @@ app.get("/userdata", function (req, res) {
     res.send(userData);
 });
 
-app.get("/musicdata", function (req, res) {
-    res.send(musicData);
+app.get("/topartistdata", function (req, res) {
+    res.send(topArtistData);
+});
+
+app.get("/toptracksdata", function (req, res) {
+    res.send(topTracksData);
 });
 
 // view engine setup

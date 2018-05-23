@@ -1,7 +1,8 @@
 var homeController = /** @class */ (function () {
     function homeController($scope, $rootScope, $http) {
         $http.get("http://localhost:1337/userdata").then(function (value) { $scope.userData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/musicdata").then(function (value) { $scope.musicData = value.data; console.log(value.data); });
+        $http.get("http://localhost:1337/topartistdata").then(function (value) { $scope.topArtistData = value.data; console.log(value.data); });
+        $http.get("http://localhost:1337/toptracksdata").then(function (value) { $scope.topTracksData = value.data; console.log(value.data); });
         $rootScope.$on("$viewContentLoaded", function () {
             window.AniJS.run();
             var mainTilt = $(".mainTilt");

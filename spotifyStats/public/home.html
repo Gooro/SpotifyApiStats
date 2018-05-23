@@ -14,7 +14,7 @@
 					{{userData.display_name}}
 				</h2>
                 <div class="tiltElement">
-                    <img class="tiltInner" ng-src='userData.images["0"].url' />
+                    <img class="tiltInner" src="{{userData.images['0'].url}}" />
                 </div>
             </div>
         </header>
@@ -29,18 +29,18 @@
         <div class="tops ">
             <div class="top top-artist ">
                 <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
-                <h2>Artist Name</h2>
+				<h2>{{topArtistData.items['0'].name}}</h2>
                 <div class="artistcover tiltElement">
                     <span class="tiltInner">Top track: Artist Best Track Ever</span>
-                    <img src="img/cover.jpg" />
+                    <img src="{{topArtistData.items['0'].images['0'].url}}" />
                 </div>
             </div>
             <div class="top top-song ">
                 <h1 class="tiltElement"><span class="tiltInner">Your top song</span></h1>
-                <h2>Song Name</h2>
+                <h2>{{topTracksData.items['0'].name}}</h2>
                 <div class="songcover tiltElement">
                     <span class="tiltInner">By Best Artist That You Can Imagine</span>
-                    <img src="img/cover2.jpg" />
+                    <img src="{{topTracksData.items['0'].album.images['0'].url}}" />
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
             <div class="top tiltElement top-artist">
                 <h2 class="tiltInner">Top Artists</h2>
                 <ol>
-                <li ng-repeat="x in musicData.items">
+                <li ng-repeat="x in topArtistData.items">
 					{{x.name}}
 				</li>
                 </ol>
@@ -64,16 +64,9 @@
             <div class="top tiltElement top-song">
                 <h2 class="tiltInner">Top Songs</h2>
                 <ol>
-                    <li>Arctic Monkeys - 4ou5<span>1</span></li>
-                    <li>Some Artist - Lorem Songum<span>2</span></li>
-                    <li>Some Artist - Lorem Songum Longum<span>3</span></li>
-                    <li>Some Artist - Short</li>
-                    <li>Arctic Monkeys - 4ou5</li>
-                    <li>Some Artist - Lorem Songum</li>
-                    <li>Some Artist - Lorem Songum Longum</li>
-                    <li>Some Artist - Short</li>
-                    <li>Arctic Monkeys - 4ou5</li>
-                    <li>Some Artist - Lorem Songum</li>
+                    <li ng-repeat="x in topTracksData.items">
+						{{x.name}}
+					</li>
                 </ol>
             </div>
 
