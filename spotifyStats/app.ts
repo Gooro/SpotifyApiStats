@@ -11,8 +11,8 @@ import { functionDeclaration } from 'babel-types';
 
 var app = express();
 
-var clientId: string = 'eda7cb802a37453190d0d66551507e64';
-var secretKey: string = '54f6b6ea4cbe4c7586401bf407b37bb8';
+var clientId: string = 'clientId';
+var secretKey: string = 'secretKey'; 
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri: string = 'http://localhost:1337/callback';
 
