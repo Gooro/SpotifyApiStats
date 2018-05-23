@@ -1,9 +1,19 @@
 ﻿interface homeInterface {
-
+    userData: any;
 }
 
 class homeController {
-    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService) {
+    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService) {
+
+
+        $http.get("http://localhost:1337/userdata").then(value => {
+            $scope.userData = value;
+            console.log($scope.userData);
+        }); 
+
+
+
+
         $rootScope.$on("$viewContentLoaded", function () {
             (<any>window).AniJS.run();
 

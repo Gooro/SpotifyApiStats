@@ -9,11 +9,12 @@ var request = require('request');
 var index_1 = require("./routes/index");
 var user_1 = require("./routes/user");
 var app = express();
-var clientId = 'clientId';
-var secretKey = 'secretKey';
+var clientId = 'eda7cb802a37453190d0d66551507e64';
+var secretKey = '54f6b6ea4cbe4c7586401bf407b37bb8';
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri = 'http://localhost:1337/callback';
 var stateKey = 'spotify_auth_state';
+var userData;
 //var cors = function (req, res, next) {
 //    // Website you wish to allow to connect
 //    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1337');
@@ -34,7 +35,7 @@ app.use(cors({ origin: 'http://localhost:1337' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.get('/login', function (req, res, next) {
-    var scopes = 'user-read-private user-read-email';
+    var scopes = 'user-read-private user-read-email user-top-read user-library-read user-read-recently-played';
     res.send('https://accounts.spotify.com/authorize' +
         '?response_type=code' +
         '&client_id=' + clientId +
@@ -66,10 +67,14 @@ app.get('/callback', function (req, res) {
             };
             // use the access token to access the Spotify Web API
             request.get(options, function (error, response, body) {
-                res.redirect("http://localhost:1337/", 200);
+                userData = body;
+                res.redirect("http://localhost:1337/#/home");
             });
         }
     });
+});
+app.get("/userdata", function (req, res) {
+    res.send(userData);
 });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
