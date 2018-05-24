@@ -3,9 +3,6 @@ var mainController = /** @class */ (function () {
         $scope.testMessage = function () {
             $http.get("http://localhost:1337/login").then(function (value) { return $window.location.href = value.data; }, function (err) { return console.error(err); });
         };
-        $rootScope.$on('viewContentLoaded', function (event) {
-            console.log('sada');
-        });
     }
     return mainController;
 }());

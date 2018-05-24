@@ -189,9 +189,13 @@ button {
       .home .controls button:last-child {
         border-radius: 0 50px 50px 0; }
   .home .tops {
+    position: absolute;
     width: 75%;
+    top: 16vh;
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-around;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s; }
     .home .tops .top-song h1::before {
       transform: rotate(180deg); }
     .home .tops .top {
@@ -234,16 +238,34 @@ button {
         right: 30px;
         left: -30px;
         background-color: white; }
-      .home .tops .top img {
-        width: 400px;
-        border: 2px solid; }
+      .home .tops .top .coverImage {
+        width: auto;
+        height: 400px;
+        display: flex;
+        align-items: center; }
+        .home .tops .top .coverImage img {
+          width: 400px;
+          border: 2px solid;
+          margin: auto; }
   .home .tops-list .top {
     width: 40%; }
     .home .tops-list .top ol {
       font-size: 1.4em; }
       .home .tops-list .top ol li {
         list-style-position: outside;
-        list-style-type: none; }
+        list-style-type: none;
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 2px 4px;
+        position: relative; }
+        .home .tops-list .top ol li:nth-child(even) {
+          background-color: rgba(255, 255, 255, 0.1); }
+        .home .tops-list .top ol li .popularity {
+          display: block;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          background-color: #1e3264;
+          position: absolute; }
   .home .tops-list .top-artist ol li {
     text-align: right; }
     .home .tops-list .top-artist ol li span {
@@ -263,6 +285,8 @@ button {
     margin-left: -10%; }
     .home .topTen .backgroundText {
       left: 14vw; }
+      .home .topTen .backgroundText span {
+        font-size: 0.3em; }
   .home .topgenre {
     justify-content: center;
     align-items: center;
@@ -286,7 +310,6 @@ button {
           padding-left: 10px;
           height: 100%;
           line-height: 27px;
-          width: 34%;
           background-color: #1db954;
           position: relative; }
           .home .topgenre .chart .progressbar div::after {
@@ -298,6 +321,10 @@ button {
             -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%);
             clip-path: polygon(0 0, 100% 100%, 0 100%);
             background-color: #1db954; }
+  .home .ng-hide {
+    display: flex !important;
+    opacity: 0;
+    transform: translateX(-150vw); }
 
 @keyframes dynamicGradient {
   from {
@@ -310,4 +337,38 @@ button {
     background-position: 0% 0%; }
   to {
     background-position: 100% 100%; } }
+
+@media (max-width: 1025px) {
+  body .home .tops {
+    /*flex-direction: column;*/
+    top: 10vh; }
+    body .home .tops .top {
+      flex-direction: column; }
+      body .home .tops .top h1 {
+        font-size: 1.5em;
+        margin-bottom: 0px; }
+        body .home .tops .top h1::before {
+          content: none; }
+      body .home .tops .top h2 {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center; }
+      body .home .tops .top .coverImage {
+        height: auto; }
+        body .home .tops .top .coverImage img {
+          max-width: 400px;
+          width: 100%; }
+  body .home .tops-list .top ol li {
+    font-size: 0.75em; }
+  body .home .onepage .backgroundText {
+    font-size: 3em; }
+  body .home .topgenre {
+    flex-direction: column; }
+    body .home .topgenre h1 {
+      width: 70%;
+      text-align: center; }
+    body .home .topgenre .chart {
+      width: 80%; } }
 

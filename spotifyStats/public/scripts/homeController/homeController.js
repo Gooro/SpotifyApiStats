@@ -1,8 +1,13 @@
 var homeController = /** @class */ (function () {
     function homeController($scope, $rootScope, $http) {
+        $scope.top15longterm = true;
+        $scope.top1longterm = true;
         $http.get("http://localhost:1337/userdata").then(function (value) { $scope.userData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/topartistdata").then(function (value) { $scope.topArtistData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/toptracksdata").then(function (value) { $scope.topTracksData = value.data; console.log(value.data); });
+        $http.get("http://localhost:1337/toptracksdatashortterm").then(function (value) { $scope.topTracksSData = value.data; console.log(value.data); });
+        $http.get("http://localhost:1337/topartistdatashortterm").then(function (value) { $scope.topArtistSData = value.data; console.log(value.data); });
+        $http.get("http://localhost:1337/topartistsforgenre").then(function (value) { $scope.topGenre = value.data; console.log(value.data); });
         $rootScope.$on("$viewContentLoaded", function () {
             window.AniJS.run();
             var mainTilt = $(".mainTilt");

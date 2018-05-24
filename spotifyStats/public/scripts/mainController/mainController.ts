@@ -11,11 +11,6 @@ class mainController {
             );
         }
 
-        $rootScope.$on('viewContentLoaded',
-            function (event) {
-                console.log('sada');
-            }
-        );
     }
     
 }

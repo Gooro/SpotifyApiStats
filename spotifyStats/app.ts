@@ -13,7 +13,7 @@ import user from './routes/user';
 var app = express();
 
 var clientId: string = 'eda7cb802a37453190d0d66551507e64';
-var secretKey: string = '54f6b6ea4cbe4c7586401bf407b37bb8';
+var secretKey: string = '4c459b72da5646b4a0ae07d9b9d21db8';
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri: string = 'http://localhost:1337/callback';
 
@@ -21,8 +21,9 @@ var stateKey = 'spotify_auth_state';
 let userData;
 let topArtistData;
 let topTracksData;
-
-
+let topArtistShortTermData;
+let topTracksShortTermData;
+let topArtistsForGenreData;
 var cors = require('cors');
 
 // use it before all route definitions
@@ -71,13 +72,31 @@ app.get('/callback', function (req, res) {
             };
 
             var topArtist = {
-                url: 'https://api.spotify.com/v1/me/top/artists',
+                url: 'https://api.spotify.com/v1/me/top/artists/?limit=15&time_range=long_term',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
+
+            var topArtistShortTerm = {
+                url: 'https://api.spotify.com/v1/me/top/artists/?limit=15&time_range=short_term',
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             }
 
             var topTracks = {
-                url: 'https://api.spotify.com/v1/me/top/tracks',
+                url: 'https://api.spotify.com/v1/me/top/tracks/?limit=15&time_range=long_term',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
+
+            var topTracksShortTerm = {
+                url: 'https://api.spotify.com/v1/me/top/tracks/?limit=15&time_range=short_term',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
+
+            var topArtistsForGenre = {
+                url: 'https://api.spotify.com/v1/me/top/artists/?limit=50&time_range=long_term',
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             }
@@ -86,10 +105,22 @@ app.get('/callback', function (req, res) {
 
             request.get(topArtist, function (error, response, body) {
                 topArtistData = body;
-            });   
+            });
 
             request.get(topTracks, function (error, response, body) {
                 topTracksData = body;
+            });
+
+            request.get(topTracksShortTerm, function (error, response, body) {
+                topTracksShortTermData = body;
+            });
+
+            request.get(topArtistShortTerm, function (error, response, body) {
+                topArtistShortTermData = body;
+            });
+
+            request.get(topArtistsForGenre, function (error, response, body) {
+                topArtistsForGenreData = body;
             });
 
             request.get(options, function (error, response, body) {
@@ -112,6 +143,51 @@ app.get("/topartistdata", function (req, res) {
 
 app.get("/toptracksdata", function (req, res) {
     res.send(topTracksData);
+});
+
+app.get("/toptracksdatashortterm", function (req, res) {
+    res.send(topTracksShortTermData);
+});
+
+app.get("/topartistdatashortterm", function (req, res) {
+    res.send(topArtistShortTermData);
+});
+
+
+app.get("/topartistsforgenre", function (req, res) {
+    var genreArray = [];
+    for (let i of topArtistsForGenreData.items) {
+        for (let j of i.genres) {
+            console.log(j);
+            genreArray.push(j);
+        }
+    }
+    var hist = genreArray.reduce(function (prev, item) {
+        if (item in prev) prev[item]++;
+        else prev[item] = 1;
+
+
+
+
+       return prev;
+    }, {});
+    function sortProperties(obj) {
+        // zmiana obiektu na array
+        var sortable = [];
+        for (var key in obj)
+            if (obj.hasOwnProperty(key))
+                sortable.push([key, obj[key]]); // zmianiam na format [key, value]
+
+        // sortuje
+        sortable.sort(function (a, b) {
+            return b[1] - a[1] ; 
+        });
+        var sliced = sortable.slice(0, 5); //biore pierwsze 5
+
+        return sliced; 
+    }
+    
+    res.send(sortProperties(hist));
 });
 
 // view engine setup

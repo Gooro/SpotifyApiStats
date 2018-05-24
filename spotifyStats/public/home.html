@@ -10,9 +10,9 @@
 
             <hr data-anijs="if: load, on: window, do: zoomInUp animated" class="tiltInner" />
             <div class="avatar">
-				<h2 class="tiltInner">
-					{{userData.display_name}}
-				</h2>
+                <h2 class="tiltInner">
+                    {{userData.display_name || userData.id}}
+                </h2>
                 <div class="tiltElement">
                     <img class="tiltInner" src="{{userData.images['0'].url}}" />
                 </div>
@@ -23,81 +23,113 @@
     <section class="onepage">
         <span class="backgroundText">the best</span>
         <div class="controls">
-            <button>since the big bang</button>
-            <button>since last time</button>
+            <button ng-click="top1longterm = true" ng-style="!top1longterm && {'background':'none'}">since the big bang</button>
+            <button ng-click="top1longterm = false"  ng-style="top1longterm && {'background':'none'}">since last time</button>
         </div>
-        <div class="tops ">
-            <div class="top top-artist ">
+        <div class="tops " ng-show="top1longterm">
+            <div class="top top-artist" >
                 <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
-				<h2>{{topArtistData.items['0'].name}}</h2>
+                <h2>{{topArtistData.items['0'].name}}</h2>
                 <div class="artistcover tiltElement">
-                    <span class="tiltInner">Top track: Artist Best Track Ever</span>
-                    <img src="{{topArtistData.items['0'].images['0'].url}}" />
+                    <!--<span class="tiltInner">Top track: Artist Best Track Ever</span>-->
+                    <div class="coverImage">
+                        <img src="{{topArtistData.items['0'].images['0'].url}}" />
+                    </div>
                 </div>
             </div>
             <div class="top top-song ">
                 <h1 class="tiltElement"><span class="tiltInner">Your top song</span></h1>
                 <h2>{{topTracksData.items['0'].name}}</h2>
                 <div class="songcover tiltElement">
-                    <span class="tiltInner">By Best Artist That You Can Imagine</span>
-                    <img src="{{topTracksData.items['0'].album.images['0'].url}}" />
+                    <span class="tiltInner">by {{topTracksData.items["0"].artists["0"].name}}</span>
+                    <div class="coverImage">
+                        <img src="{{topTracksData.items['0'].album.images['0'].url}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tops" ng-show="!top1longterm">
+            <div class="top top-artist">
+                <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
+                <h2>{{topArtistSData.items['0'].name}}</h2>
+                <div class="artistcover tiltElement">
+                    <!--<span class="tiltInner">Top track: Artist Best Track Ever</span>-->
+                    <div class="coverImage">
+                        <img src="{{topArtistSData.items['0'].images['0'].url}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="top top-song ">
+                <h1 class="tiltElement"><span class="tiltInner">Your top song</span></h1>
+                <h2>{{topTracksSData.items['0'].name}}</h2>
+                <div class="songcover tiltElement">
+                    <span class="tiltInner">by {{topTracksSData.items["0"].artists["0"].name}}</span>
+                    <div class="coverImage">
+                        <img src="{{topTracksSData.items['0'].album.images['0'].url}}" />
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="onepage topTen">
 
-        <span class="backgroundText">top 10</span>
+        <span class="backgroundText">top 15<span>*line under name shows popularity</span></span>
         <div class="controls">
-            <button>since the big bang</button>
-            <button>since last time</button>
+            <button ng-click="top15longterm = true" ng-style="!top15longterm && {'background':'none'}">since the big bang</button>
+            <button ng-click="top15longterm = false" ng-style="top15longterm && {'background':'none'}">since last time</button>
         </div>
-        <div class="tops tops-list tiltInner">
+        <div class="tops tops-list tiltInner" ng-show="top15longterm">
             <div class="top tiltElement top-artist">
                 <h2 class="tiltInner">Top Artists</h2>
                 <ol>
-                <li ng-repeat="x in topArtistData.items">
-					{{x.name}}
-				</li>
+                    <li ng-repeat="x in topArtistData.items">
+                        <span>{{$index +1}}</span>{{x.name}} <span class="popularity"  ng-style="{'width' : '{{x.popularity}}%' }"></span>
+                    </li>
+                   
                 </ol>
             </div>
             <div class="top tiltElement top-song">
                 <h2 class="tiltInner">Top Songs</h2>
                 <ol>
-                    <li ng-repeat="x in topTracksData.items">
-						{{x.name}}
-					</li>
+                    <li ng-repeat="x in topTracksData.items ">
+                        {{x.artists["0"].name}} - {{x.name}}<span>{{$index +1}}</span>
+                        <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>
+                    </li>
                 </ol>
             </div>
-
+        </div>
+        <div class="tops tops-list tiltInner" ng-show="!top15longterm">
+            <div class="top tiltElement top-artist">
+                <h2 class="tiltInner">Top Artists <span>popularity</span></h2>
+                <ol>
+                    <li ng-repeat="x in topArtistSData.items">
+                        <span>{{$index +1}}</span>{{x.name}} <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>
+</li>
+                </ol>
+            </div>
+            <div class="top tiltElement top-song">
+                <h2 class="tiltInner">Top Songs</h2>
+                <ol>
+                    <li ng-repeat="x in topTracksSData.items ">
+                        {{x.artists["0"].name}} - {{x.name}}<span>{{$index +1}}</span>
+                        <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>
+                    </li>
+                </ol>
+            </div>
         </div>
     </section>
     <section class="onepage topgenre">
         <span class="backgroundText">genres</span>
         <h1>
-            Your tope genre is <span>Genre</span>, which appears is <span>x% </span>of your top tracks.
+            Your tope genre is <span>{{topGenre["0"]["0"]}}</span>, which appears is <span>{{(topGenre["0"][1])/0.5}}% </span>of your top tracks.
         </h1>
         <div class="chart">
-            <p>Genre 1</p>
-            <div class="progressbar tiltElement">
-                <div class="tiltInner">34%</div>
-            </div>
-            <p>Genre 1</p>
-            <div class="progressbar tiltElement">
-                <div class="tiltInner">34%</div>
-            </div>
-            <p>Genre 1</p>
-            <div class="progressbar tiltElement">
-                <div class="tiltInner">34%</div>
-            </div>
-            <p>Genre 1</p>
-            <div class="progressbar tiltElement">
-                <div class="tiltInner">34%</div>
-            </div>
-            <p>Genre 1</p>
-            <div class="progressbar tiltElement">
-                <div class="tiltInner">34%</div>
-            </div>
+            <section ng-repeat="x in topGenre">
+                <p>{{x[0]}}</p>
+                <div class="progressbar tiltElement">
+                    <div class="tiltInner" ng-style="{'width' : '{{x[1]/0.5}}%' }">{{x[1]/0.5}}%</div>
+                </div>
+            </section>
         </div>
     </section>
 </section>
