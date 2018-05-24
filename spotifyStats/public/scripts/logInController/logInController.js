@@ -1,5 +1,8 @@
 var loginController = /** @class */ (function () {
-    function loginController($scope) {
+    function loginController($scope, $http, $rootScope, $window) {
+        $scope.login = function () {
+            $http.get("http://localhost:1337/login").then(function (value) { return $window.location.href = value.data; }, function (err) { return console.error(err); });
+        };
     }
     return loginController;
 }());
@@ -12,4 +15,4 @@ app.config(function ($stateProvider) {
         templateUrl: "login.html"
     });
 });
-//# sourceMappingURL=logInController.js.map
+//# sourceMappingURL=loginController.js.map

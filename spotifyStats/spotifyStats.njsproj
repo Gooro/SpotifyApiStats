@@ -42,7 +42,7 @@
     <TypeScriptCompile Include="public\scripts\homeController\homeController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="public\scripts\logInController\logInController.ts">
+    <TypeScriptCompile Include="public\scripts\loginController\loginController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\scripts\mainController\mainController.ts">
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\scripts\homeController\" />
-    <Folder Include="public\scripts\logInController\" />
+    <Folder Include="public\scripts\loginController\" />
     <Folder Include="ssl\" />
     <Folder Include="public\" />
     <Folder Include="public\img\" />
