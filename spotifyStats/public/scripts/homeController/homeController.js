@@ -2,6 +2,9 @@ var homeController = /** @class */ (function () {
     function homeController($scope, $rootScope, $http) {
         $scope.top15longterm = true;
         $scope.top1longterm = true;
+        $scope.onepagesNumber = document.getElementsByClassName('onepage').length;
+        $scope.currentPage = 1;
+        $scope.progress = ($scope.currentPage - 1 / $scope.onepagesNumber - 1) * 100;
         $http.get("http://localhost:1337/userdata").then(function (value) { $scope.userData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/topartistdata").then(function (value) { $scope.topArtistData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/toptracksdata").then(function (value) { $scope.topTracksData = value.data; console.log(value.data); });
@@ -25,6 +28,12 @@ var homeController = /** @class */ (function () {
                 animationTime: 600,
                 loop: true,
                 keyboard: true,
+                pagination: false,
+                afterMove: function (index) {
+                    $scope.$apply(function () {
+                        $scope.progress = ((index / $scope.onepagesNumber) * 100);
+                    });
+                },
             });
         });
     }

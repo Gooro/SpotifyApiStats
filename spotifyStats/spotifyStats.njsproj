@@ -42,7 +42,7 @@
     <TypeScriptCompile Include="public\scripts\homeController\homeController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="public\scripts\loginController\loginController.ts">
+    <TypeScriptCompile Include="public\scripts\logController\logController.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\scripts\mainController\mainController.ts">
@@ -66,7 +66,7 @@
     <Content Include="public\img\splash4.png" />
     <Content Include="public\lib\anicollection.css" />
     <Content Include="public\lib\onepage-scroll.css" />
-    <Content Include="public\login.html" />
+    <Content Include="public\log.html" />
     <Content Include="public\home.html" />
     <Content Include="public\index.html">
       <SubType>Code</SubType>
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\scripts\homeController\" />
-    <Folder Include="public\scripts\loginController\" />
+    <Folder Include="public\scripts\logController\" />
     <Folder Include="ssl\" />
     <Folder Include="public\" />
     <Folder Include="public\img\" />

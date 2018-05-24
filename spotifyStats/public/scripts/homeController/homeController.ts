@@ -10,13 +10,19 @@
     minutesMonth: any;
     top15longterm: boolean;
     top1longterm: boolean;
-
+    onepagesNumber: number;
+    currentPage: number;
+    progress: number;
+    $apply;
 }
 
 class homeController {
     constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService) {
         $scope.top15longterm = true;
         $scope.top1longterm = true;
+        $scope.onepagesNumber = document.getElementsByClassName('onepage').length;
+        $scope.currentPage = 1;
+        $scope.progress = ($scope.currentPage / $scope.onepagesNumber)*100;
 
         $http.get("http://localhost:1337/userdata").then(value => { $scope.userData = value.data; console.log(value.data) });
         $http.get("http://localhost:1337/topartistdata").then(value => { $scope.topArtistData = value.data; console.log(value.data) });
@@ -48,7 +54,12 @@ class homeController {
                 animationTime: 600,
                 loop: true,
                 keyboard: true,
-
+                pagination: false,
+                afterMove: function (index) {
+                    $scope.$apply(function () {
+                        $scope.progress = ((index / $scope.onepagesNumber)*100);
+                    });
+                },
             });
         })
     }

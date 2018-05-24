@@ -6,7 +6,7 @@ app.service('authInterceptor', function ($q) {});
 app.config(function ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
     $httpProvider.config;
     $locationProvider.hashPrefix('');
-    $urlRouterProvider.otherwise('login');
+    $urlRouterProvider.otherwise('log');
     $stateProvider
     $httpProvider.interceptors.push('authInterceptor');
 });

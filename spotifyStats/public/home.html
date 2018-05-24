@@ -1,4 +1,8 @@
-﻿<section class="home">
+﻿<div class="progress">
+    <div ng-style="{ 'width': 'calc('+progress + '% - 10px)' }"></div>
+            <!--ng-style="{'width' : '{{x[1]/0.5}}%' }"-->
+</div>
+<section class="home">
     <section class="onepage">
         <header class="tiltElement">
             <h1 data-anijs="if: load, on: window, do: zoomInUp animated" class="tiltInner">
@@ -24,10 +28,10 @@
         <span class="backgroundText">the best</span>
         <div class="controls">
             <button ng-click="top1longterm = true" ng-style="!top1longterm && {'background':'none'}">since the big bang</button>
-            <button ng-click="top1longterm = false"  ng-style="top1longterm && {'background':'none'}">since last time</button>
+            <button ng-click="top1longterm = false" ng-style="top1longterm && {'background':'none'}">since last time</button>
         </div>
         <div class="tops " ng-show="top1longterm">
-            <div class="top top-artist" >
+            <div class="top top-artist">
                 <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
                 <h2>{{topArtistData.items['0'].name}}</h2>
                 <div class="artistcover tiltElement">
@@ -83,9 +87,9 @@
                 <h2 class="tiltInner">Top Artists</h2>
                 <ol>
                     <li ng-repeat="x in topArtistData.items">
-                        <span>{{$index +1}}</span>{{x.name}} <span class="popularity"  ng-style="{'width' : '{{x.popularity}}%' }"></span>
+                        <span>{{$index +1}}</span>{{x.name}} <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>
                     </li>
-                   
+
                 </ol>
             </div>
             <div class="top tiltElement top-song">
@@ -104,7 +108,7 @@
                 <ol>
                     <li ng-repeat="x in topArtistSData.items">
                         <span>{{$index +1}}</span>{{x.name}} <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>
-</li>
+                    </li>
                 </ol>
             </div>
             <div class="top tiltElement top-song">
