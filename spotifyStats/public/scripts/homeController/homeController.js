@@ -11,7 +11,7 @@ var homeController = /** @class */ (function () {
         $http.get("http://localhost:1337/toptracksdatashortterm").then(function (value) { $scope.topTracksSData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/topartistdatashortterm").then(function (value) { $scope.topArtistSData = value.data; console.log(value.data); });
         $http.get("http://localhost:1337/topartistsforgenre").then(function (value) { $scope.topGenre = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/toptracksdatalongterm").then(function (value) { $scope.tracksStyleData = value.data; console.log("To Cię Dominik interesuje", value.data); });
+        $http.get("http://localhost:1337/averageoftracks").then(function (value) { $scope.tracksStyleData = value.data; console.log("Average: ", value.data); });
         $rootScope.$on("$viewContentLoaded", function () {
             window.AniJS.run();
             var mainTilt = $(".mainTilt");

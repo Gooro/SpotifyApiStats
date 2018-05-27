@@ -1,6 +1,6 @@
 ﻿<div class="progress">
     <div ng-style="{ 'width': 'calc('+progress + '% - 10px)' }"></div>
-            <!--ng-style="{'width' : '{{x[1]/0.5}}%' }"-->
+    <!--ng-style="{'width' : '{{x[1]/0.5}}%' }"-->
 </div>
 <section class="home">
     <section class="onepage">
@@ -122,15 +122,53 @@
             </div>
         </div>
     </section>
+    <section class="onepage songStats">
+        <span class="backgroundText">top stats</span>
+        <h1>
+            <span ng-if="tracksStyleData.danceability > tracksStyleData.energy">Oh, I see. You like to dance, don't you?</span>
+            <span ng-if="tracksStyleData.danceability < tracksStyleData.energy">Energetic, huh? Ready for the mosh-pit, shaka brah!</span>
+        </h1>
+        <h2>Your tracks are...</h2>
+        <span>- based on your top tracks -</span>
+        <div class="songStatsChart">
+            <section>
+                <h1>ENERGETIC</h1>
+                <div class="donutChart tiltElement">
+                    <h1>{{tracksStyleData.energy}}%</h1>
+                    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut tiltInner">
+                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
+                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#1db954" stroke-width="3" stroke-dasharray="{{tracksStyleData.energy}} 100" stroke-dashoffset="0"></circle>
+                    </svg>
+                </div>
+            </section>
+
+            <section>
+                <h1>DANCEABLE</h1>
+                <div class="donutChart tiltElement">
+                    <h1>{{tracksStyleData.danceability}}%</h1>
+                    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut tiltInner">
+                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
+                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#1db954" stroke-width="3" stroke-dasharray="{{tracksStyleData.danceability}} 100" stroke-dashoffset="0"></circle>
+                    </svg>
+                </div>
+            </section>
+            <section>
+                <h1>AVERAGE TEMPO</h1>
+                <div class="donutChart">
+                    <h1 class="tiltElement">{{tracksStyleData.tempo}} - {{tracksStyleData.tempoS}}<span class="tiltInner" ng-style="{'animation-duration': tracksStyleData.tempoS+'s'}"></span></h1>
+                </div>
+            </section>
+        </div>
+    </section>
     <section class="onepage topgenre">
         <span class="backgroundText">genres</span>
         <h1>
-            Your tope genre is <span>{{topGenre["0"]["0"]}}</span>, which appears is <span>{{(topGenre["0"][1])/0.5}}% </span>of your top tracks.
+            Your top genre is <span>{{topGenre["0"]["0"]}}</span>, which appears is <span>{{(topGenre["0"][1])/0.5}}% </span>of your top tracks.
         </h1>
-        <div class="chart">
+        <div class="chart tiltElement">
             <section ng-repeat="x in topGenre">
                 <p>{{x[0]}}</p>
-                <div class="progressbar tiltElement">
+                <div class="progressbar ">
                     <div class="tiltInner" ng-style="{'width' : '{{x[1]/0.5}}%' }">{{x[1]/0.5}}%</div>
                 </div>
             </section>

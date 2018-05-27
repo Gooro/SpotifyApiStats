@@ -13,8 +13,8 @@ import user from './routes/user';
 import { access } from 'fs';
 var app = express();
 
-var clientId: string = 'clientId';
-var secretKey: string = 'secretKey'; 
+var clientId: string = 'eda7cb802a37453190d0d66551507e64';
+var secretKey: string = '4c459b72da5646b4a0ae07d9b9d21db8';
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri: string = 'http://localhost:1337/callback';
 
@@ -88,7 +88,7 @@ app.get('/callback', function (req, res) {
             }
 
             var topTracksLongTerm = {
-                url: 'https://api.spotify.com/v1/me/player/recently-played/?limit=50',
+                url: 'https://api.spotify.com/v1/me/top/tracks/?limit=50&time_range=long_term',
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             }
@@ -129,9 +129,9 @@ app.get('/callback', function (req, res) {
 
             request.get(topTracksLongTerm, function (error, response, body) {
                 topTracksLongTermData = body.items;
-                questionString = topTracksLongTermData[0].track.id;
+                questionString = topTracksLongTermData[0].id;
                 for (var i = 1; i < topTracksLongTermData.length; i++) {
-                    questionString = questionString.concat(",", topTracksLongTermData[i].track.id);
+                    questionString = questionString.concat(",", topTracksLongTermData[i].id);
                 }
                 request.get({
                     url: 'https://api.spotify.com/v1/audio-features/?ids=' + questionString,
@@ -141,19 +141,22 @@ app.get('/callback', function (req, res) {
                     var energy: number = 0;
                     var danceability: number = 0;
                     var tempo: number = 0;
+                    var tempoS: string;
                     for (var i = 0; i < body.audio_features.length; i++) {
                         energy += body.audio_features[i].energy;
                         danceability += body.audio_features[i].danceability;
                         tempo += body.audio_features[i].tempo;
                     }
-                    energy = energy / 50;
-                    danceability = danceability / 50;
-                    tempo = tempo / 50;
+                    energy = Math.round((energy / 50) * 100);
+                    danceability = Math.round((danceability / 50) * 100);
+                    tempo = Math.round(tempo / 50);
+                    tempoS = (1 / (tempo / 60)).toFixed(2); 
 
                     musicData = {
                         energy: energy,
                         danceability: danceability,
-                        tempo: tempo
+                        tempo: tempo,
+                        tempoS: tempoS
                     }
                 });
 

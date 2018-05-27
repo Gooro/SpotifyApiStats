@@ -344,6 +344,44 @@ button {
             -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%);
             clip-path: polygon(0 0, 100% 100%, 0 100%);
             background-color: #1db954; }
+  .home .songStats {
+    font-size: 1.1em; }
+    .home .songStats .songStatsChart {
+      width: 80%;
+      margin: auto;
+      display: flex;
+      justify-content: space-around; }
+      .home .songStats .songStatsChart section {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 28%; }
+        .home .songStats .songStatsChart section h1 {
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          top: 0;
+          font-size: 1.5em; }
+        .home .songStats .songStatsChart section .donutChart {
+          position: relative;
+          height: 100%; }
+          .home .songStats .songStatsChart section .donutChart h1 {
+            position: absolute;
+            top: 40%;
+            height: 20%;
+            font-size: 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+            .home .songStats .songStatsChart section .donutChart h1 span {
+              position: absolute;
+              bottom: -10px;
+              left: 0;
+              width: 100%;
+              height: 5px;
+              background-color: #1db954;
+              animation: tempo infinite;
+              animation-timing-function: cubic-bezier(0.42, 0, 0.54, 1.35); }
   .home .ng-hide {
     display: flex !important;
     opacity: 0;
@@ -360,6 +398,12 @@ button {
     background-position: 0% 0%; }
   to {
     background-position: 100% 100%; } }
+
+@keyframes tempo {
+  from {
+    width: 0; }
+  to {
+    width: 100%; } }
 
 @media (max-width: 1025px) {
   body .home .tops {
