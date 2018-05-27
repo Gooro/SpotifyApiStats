@@ -14,15 +14,17 @@
     currentPage: number;
     progress: number;
     $apply;
+    tracksStyleData: any;
+
 }
 
 class homeController {
-    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService) {
+    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService, $timeout) {
         $scope.top15longterm = true;
         $scope.top1longterm = true;
         $scope.onepagesNumber = document.getElementsByClassName('onepage').length;
         $scope.currentPage = 1;
-        $scope.progress = ($scope.currentPage / $scope.onepagesNumber)*100;
+        $scope.progress = ($scope.currentPage / $scope.onepagesNumber) * 100;
 
         $http.get("http://localhost:1337/userdata").then(value => { $scope.userData = value.data; console.log(value.data) });
         $http.get("http://localhost:1337/topartistdata").then(value => { $scope.topArtistData = value.data; console.log(value.data) });
@@ -30,6 +32,10 @@ class homeController {
         $http.get("http://localhost:1337/toptracksdatashortterm").then(value => { $scope.topTracksSData = value.data; console.log(value.data) });
         $http.get("http://localhost:1337/topartistdatashortterm").then(value => { $scope.topArtistSData = value.data; console.log(value.data) });
         $http.get("http://localhost:1337/topartistsforgenre").then(value => { $scope.topGenre = value.data; console.log(value.data) });
+        $http.get("http://localhost:1337/averageoftracks").then(value => { $scope.tracksStyleData = value.data; console.log("Average: ", value.data) });
+
+
+
 
 
         $rootScope.$on("$viewContentLoaded", function () {
@@ -57,7 +63,7 @@ class homeController {
                 pagination: false,
                 afterMove: function (index) {
                     $scope.$apply(function () {
-                        $scope.progress = ((index / $scope.onepagesNumber)*100);
+                        $scope.progress = ((index / $scope.onepagesNumber) * 100);
                     });
                 },
             });

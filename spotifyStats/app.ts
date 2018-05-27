@@ -10,10 +10,11 @@ import users from './routes/user';
 import { functionDeclaration } from 'babel-types';
 
 import user from './routes/user';
+import { access } from 'fs';
 var app = express();
 
-var clientId: string = 'eda7cb802a37453190d0d66551507e64';
-var secretKey: string = '4c459b72da5646b4a0ae07d9b9d21db8';
+var clientId: string = 'clientId';
+var secretKey: string = 'secretKey'; 
 /** * @description przekierowanie do stronny jeśli callback będzie success */
 var redirectUri: string = 'http://localhost:1337/callback';
 
@@ -23,12 +24,15 @@ let topArtistData;
 let topTracksData;
 let topArtistShortTermData;
 let topTracksShortTermData;
+let topTracksLongTermData;
 let topArtistsForGenreData;
+
+let questionString;
+let musicData;
 var cors = require('cors');
 
 // use it before all route definitions
 app.use(cors());
-
 //Http body to JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -83,6 +87,12 @@ app.get('/callback', function (req, res) {
                 json: true
             }
 
+            var topTracksLongTerm = {
+                url: 'https://api.spotify.com/v1/me/player/recently-played/?limit=50',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            }
+
             var topTracks = {
                 url: 'https://api.spotify.com/v1/me/top/tracks/?limit=15&time_range=long_term',
                 headers: { 'Authorization': 'Bearer ' + access_token },
@@ -103,6 +113,8 @@ app.get('/callback', function (req, res) {
             // use the access token to access the Spotify Web API
 
 
+
+
             request.get(topArtist, function (error, response, body) {
                 topArtistData = body;
             });
@@ -114,6 +126,40 @@ app.get('/callback', function (req, res) {
             request.get(topTracksShortTerm, function (error, response, body) {
                 topTracksShortTermData = body;
             });
+
+            request.get(topTracksLongTerm, function (error, response, body) {
+                topTracksLongTermData = body.items;
+                questionString = topTracksLongTermData[0].track.id;
+                for (var i = 1; i < topTracksLongTermData.length; i++) {
+                    questionString = questionString.concat(",", topTracksLongTermData[i].track.id);
+                }
+                request.get({
+                    url: 'https://api.spotify.com/v1/audio-features/?ids=' + questionString,
+                    headers: { 'Authorization': 'Bearer ' + access_token },
+                    json: true
+                }, function (error, response, body) {
+                    var energy: number = 0;
+                    var danceability: number = 0;
+                    var tempo: number = 0;
+                    for (var i = 0; i < body.audio_features.length; i++) {
+                        energy += body.audio_features[i].energy;
+                        danceability += body.audio_features[i].danceability;
+                        tempo += body.audio_features[i].tempo;
+                    }
+                    energy = energy / 50;
+                    danceability = danceability / 50;
+                    tempo = tempo / 50;
+
+                    musicData = {
+                        energy: energy,
+                        danceability: danceability,
+                        tempo: tempo
+                    }
+                });
+
+            });
+
+
 
             request.get(topArtistShortTerm, function (error, response, body) {
                 topArtistShortTermData = body;
@@ -127,10 +173,10 @@ app.get('/callback', function (req, res) {
                 userData = body;
                 res.redirect("http://localhost:1337/#/home");
             });
+
         }
     });
 });
-
 
 
 app.get("/userdata", function (req, res) {
@@ -147,6 +193,10 @@ app.get("/toptracksdata", function (req, res) {
 
 app.get("/toptracksdatashortterm", function (req, res) {
     res.send(topTracksShortTermData);
+});
+
+app.get("/averageoftracks", function (req, res) {
+    res.send(musicData);
 });
 
 app.get("/topartistdatashortterm", function (req, res) {
@@ -169,7 +219,7 @@ app.get("/topartistsforgenre", function (req, res) {
 
 
 
-       return prev;
+        return prev;
     }, {});
     function sortProperties(obj) {
         // zmiana obiektu na array
@@ -180,13 +230,13 @@ app.get("/topartistsforgenre", function (req, res) {
 
         // sortuje
         sortable.sort(function (a, b) {
-            return b[1] - a[1] ; 
+            return b[1] - a[1];
         });
         var sliced = sortable.slice(0, 5); //biore pierwsze 5
 
-        return sliced; 
+        return sliced;
     }
-    
+
     res.send(sortProperties(hist));
 });
 

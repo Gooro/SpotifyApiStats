@@ -19,7 +19,10 @@ var topArtistData;
 var topTracksData;
 var topArtistShortTermData;
 var topTracksShortTermData;
+var topTracksLongTermData;
 var topArtistsForGenreData;
+var questionString;
+var musicData;
 var cors = require('cors');
 // use it before all route definitions
 app.use(cors());
@@ -67,6 +70,11 @@ app.get('/callback', function (req, res) {
                 headers: { 'Authorization': 'Bearer ' + access_token },
                 json: true
             };
+            var topTracksLongTerm = {
+                url: 'https://api.spotify.com/v1/me/player/recently-played/?limit=50',
+                headers: { 'Authorization': 'Bearer ' + access_token },
+                json: true
+            };
             var topTracks = {
                 url: 'https://api.spotify.com/v1/me/top/tracks/?limit=15&time_range=long_term',
                 headers: { 'Authorization': 'Bearer ' + access_token },
@@ -92,6 +100,36 @@ app.get('/callback', function (req, res) {
             request.get(topTracksShortTerm, function (error, response, body) {
                 topTracksShortTermData = body;
             });
+            request.get(topTracksLongTerm, function (error, response, body) {
+                topTracksLongTermData = body.items;
+                questionString = topTracksLongTermData[0].track.id;
+                for (var i = 1; i < topTracksLongTermData.length; i++) {
+                    questionString = questionString.concat(",", topTracksLongTermData[i].track.id);
+                }
+                request.get({
+                    url: 'https://api.spotify.com/v1/audio-features/?ids=' + questionString,
+                    headers: { 'Authorization': 'Bearer ' + access_token },
+                    json: true
+                }, function (error, response, body) {
+                    var energy = 0;
+                    var danceability = 0;
+                    var tempo = 0;
+                    for (var i = 0; i < body.audio_features.length; i++) {
+                        energy += body.audio_features[i].energy;
+                        danceability += body.audio_features[i].danceability;
+                        tempo += body.audio_features[i].tempo;
+                    }
+                    energy = energy / 50;
+                    danceability = danceability / 50;
+                    tempo = tempo / 50;
+                    musicData = {
+                        energy: energy,
+                        danceability: danceability,
+                        tempo: tempo
+                    };
+                });
+                //sample(access_token);
+            });
             request.get(topArtistShortTerm, function (error, response, body) {
                 topArtistShortTermData = body;
             });
@@ -116,6 +154,9 @@ app.get("/toptracksdata", function (req, res) {
 });
 app.get("/toptracksdatashortterm", function (req, res) {
     res.send(topTracksShortTermData);
+});
+app.get("/toptracksdatalongterm", function (req, res) {
+    res.send(musicData);
 });
 app.get("/topartistdatashortterm", function (req, res) {
     res.send(topArtistShortTermData);
