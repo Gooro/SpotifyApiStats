@@ -238,11 +238,13 @@ button {
             div {
                 position: relative;
 
-                img {
+                .image {
                     width: 300px;
                     height: 300px;
-                    margin-top: 30px;
+                    margin: 30px auto auto;
                     border-radius: 400px;
+                    background-size: cover;
+                    background-position: 50% 50%;
                 }
 
                 &::before {
@@ -250,7 +252,7 @@ button {
                     background-image: url(../img/splash4.png);
                     background-position: bottom center;
                     background-repeat: no-repeat;
-                    background-size: 89%;
+                    background-size: 82%;
                     width: 100%;
                     height: 117%;
                     position: absolute;
@@ -264,6 +266,8 @@ button {
 
     .controls {
         width: 80%;
+        display: flex;
+        justify-content: center;
 
         button {
             width: 30%;
@@ -300,6 +304,7 @@ button {
         .top {
             margin-top: 40px;
             position: relative;
+            width: 45%;
 
             h1 {
                 font-size: 3em;
@@ -364,6 +369,8 @@ button {
                 height: 400px;
                 display: flex;
                 align-items: center;
+                background-size: cover;
+                background-position: 50% 50%;
 
                 img {
                     width: 400px;
@@ -589,9 +596,33 @@ button {
 }
 
 @media (max-width: 1025px) {
+
     body {
+        font-size: 14px;
+
+        .login div h2::before {
+            content: none;
+        }
 
         .home {
+            header {
+                h1 {
+                    font-size: 2em;
+                }
+
+                &::before {
+                    content: none;
+                }
+
+                .avatar {
+                    div {
+                        &::before {
+                            content: none;
+                        }
+                    }
+                }
+            }
+
             .tops {
                 /*flex-direction: column;*/
                 top: 10vh;
@@ -617,7 +648,6 @@ button {
                     }
 
                     .coverImage {
-                        height: auto;
 
                         img {
                             max-width: 400px;
@@ -627,8 +657,12 @@ button {
                 }
             }
 
-            .tops-list .top ol li {
-                font-size: 0.75em;
+            .tops-list .top {
+                width: 48%;
+
+                ol li {
+                    font-size: 0.75em;
+                }
             }
 
             .onepage .backgroundText {
@@ -645,6 +679,23 @@ button {
 
                 .chart {
                     width: 80%;
+                }
+            }
+
+            .songStats .songStatsChart {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+
+                section {
+                    width: 100%;
+
+                    .donutChart {
+                        height: 23vh;
+                    }
                 }
             }
         }

@@ -18,7 +18,7 @@
                     {{userData.display_name || userData.id}}
                 </h2>
                 <div class="tiltElement">
-                    <img class="tiltInner" src="{{userData.images['0'].url}}" />
+                    <section class="tiltInner image" ng-style="{'background-image': 'url(' + userData.images['0'].url + ')'}"></section>
                 </div>
             </div>
         </header>
@@ -35,9 +35,7 @@
                 <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
                 <h2>{{topArtistData.items['0'].name}}</h2>
                 <div class="artistcover tiltElement">
-                    <!--<span class="tiltInner">Top track: Artist Best Track Ever</span>-->
-                    <div class="coverImage">
-                        <img src="{{topArtistData.items['0'].images['0'].url}}" />
+                    <div class="coverImage" ng-style="{'background-image': 'url(' + topArtistData.items['0'].images['0'].url + ')'}">
                     </div>
                 </div>
             </div>
@@ -46,8 +44,7 @@
                 <h2>{{topTracksData.items['0'].name}}</h2>
                 <div class="songcover tiltElement">
                     <span class="tiltInner">by {{topTracksData.items["0"].artists["0"].name}}</span>
-                    <div class="coverImage">
-                        <img src="{{topTracksData.items['0'].album.images['0'].url}}" />
+                    <div class="coverImage" ng-style="{'background-image': 'url(' + topTracksData.items['0'].album.images['0'].url + ')'}">
                     </div>
                 </div>
             </div>
@@ -57,9 +54,7 @@
                 <h1 class="tiltElement"><span class="tiltInner">Your top artist</span></h1>
                 <h2>{{topArtistSData.items['0'].name}}</h2>
                 <div class="artistcover tiltElement">
-                    <!--<span class="tiltInner">Top track: Artist Best Track Ever</span>-->
-                    <div class="coverImage">
-                        <img src="{{topArtistSData.items['0'].images['0'].url}}" />
+                    <div class="coverImage" ng-style="{'background-image': 'url(' + topArtistSData.items['0'].images['0'].url + ')'}">
                     </div>
                 </div>
             </div>
@@ -68,8 +63,7 @@
                 <h2>{{topTracksSData.items['0'].name}}</h2>
                 <div class="songcover tiltElement">
                     <span class="tiltInner">by {{topTracksSData.items["0"].artists["0"].name}}</span>
-                    <div class="coverImage">
-                        <img src="{{topTracksSData.items['0'].album.images['0'].url}}" />
+                    <div class="coverImage" ng-style="{'background-image': 'url(' +topTracksSData.items['0'].album.images['0'].url + ')'}">
                     </div>
                 </div>
             </div>
@@ -104,7 +98,7 @@
         </div>
         <div class="tops tops-list tiltInner" ng-show="!top15longterm">
             <div class="top tiltElement top-artist">
-                <h2 class="tiltInner">Top Artists <span>popularity</span></h2>
+                <h2 class="tiltInner">Top Artists</h2>
                 <ol>
                     <li ng-repeat="x in topArtistSData.items">
                         <span>{{$index +1}}</span>{{x.name}} <span class="popularity" ng-style="{'width' : '{{x.popularity}}%' }"></span>

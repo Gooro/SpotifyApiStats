@@ -185,17 +185,19 @@ button {
       font-size: 4em; }
     .home header .avatar div {
       position: relative; }
-      .home header .avatar div img {
+      .home header .avatar div .image {
         width: 300px;
         height: 300px;
-        margin-top: 30px;
-        border-radius: 400px; }
+        margin: 30px auto auto;
+        border-radius: 400px;
+        background-size: cover;
+        background-position: 50% 50%; }
       .home header .avatar div::before {
         content: '';
         background-image: url(../img/splash4.png);
         background-position: bottom center;
         background-repeat: no-repeat;
-        background-size: 89%;
+        background-size: 82%;
         width: 100%;
         height: 117%;
         position: absolute;
@@ -203,7 +205,9 @@ button {
         top: 0;
         z-index: -1; }
   .home .controls {
-    width: 80%; }
+    width: 80%;
+    display: flex;
+    justify-content: center; }
     .home .controls button {
       width: 30%;
       padding: 10px 0; }
@@ -223,7 +227,8 @@ button {
       transform: rotate(180deg); }
     .home .tops .top {
       margin-top: 40px;
-      position: relative; }
+      position: relative;
+      width: 45%; }
       .home .tops .top h1 {
         font-size: 3em;
         position: relative;
@@ -265,7 +270,9 @@ button {
         width: auto;
         height: 400px;
         display: flex;
-        align-items: center; }
+        align-items: center;
+        background-size: cover;
+        background-position: 50% 50%; }
         .home .tops .top .coverImage img {
           width: 400px;
           border: 2px solid;
@@ -406,36 +413,57 @@ button {
     width: 100%; } }
 
 @media (max-width: 1025px) {
-  body .home .tops {
-    /*flex-direction: column;*/
-    top: 10vh; }
-    body .home .tops .top {
-      flex-direction: column; }
-      body .home .tops .top h1 {
-        font-size: 1.5em;
-        margin-bottom: 0px; }
-        body .home .tops .top h1::before {
-          content: none; }
-      body .home .tops .top h2 {
-        height: 100px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center; }
-      body .home .tops .top .coverImage {
-        height: auto; }
+  body {
+    font-size: 14px; }
+    body .login div h2::before {
+      content: none; }
+    body .home header h1 {
+      font-size: 2em; }
+    body .home header::before {
+      content: none; }
+    body .home header .avatar div::before {
+      content: none; }
+    body .home .tops {
+      /*flex-direction: column;*/
+      top: 10vh; }
+      body .home .tops .top {
+        flex-direction: column; }
+        body .home .tops .top h1 {
+          font-size: 1.5em;
+          margin-bottom: 0px; }
+          body .home .tops .top h1::before {
+            content: none; }
+        body .home .tops .top h2 {
+          height: 100px;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          justify-content: center; }
         body .home .tops .top .coverImage img {
           max-width: 400px;
           width: 100%; }
-  body .home .tops-list .top ol li {
-    font-size: 0.75em; }
-  body .home .onepage .backgroundText {
-    font-size: 3em; }
-  body .home .topgenre {
-    flex-direction: column; }
-    body .home .topgenre h1 {
-      width: 70%;
-      text-align: center; }
-    body .home .topgenre .chart {
-      width: 80%; } }
+    body .home .tops-list .top {
+      width: 48%; }
+      body .home .tops-list .top ol li {
+        font-size: 0.75em; }
+    body .home .onepage .backgroundText {
+      font-size: 3em; }
+    body .home .topgenre {
+      flex-direction: column; }
+      body .home .topgenre h1 {
+        width: 70%;
+        text-align: center; }
+      body .home .topgenre .chart {
+        width: 80%; }
+    body .home .songStats .songStatsChart {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center; }
+      body .home .songStats .songStatsChart section {
+        width: 100%; }
+        body .home .songStats .songStatsChart section .donutChart {
+          height: 23vh; } }
 
