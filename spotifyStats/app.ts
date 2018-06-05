@@ -25,8 +25,7 @@ let topTracksData;
 let topArtistShortTermData;
 let topTracksShortTermData;
 let topTracksLongTermData;
-let topArtistsForGenreData;
-
+let topArtistsForGenreData; let token;
 let questionString;
 let musicData;
 var cors = require('cors');
@@ -68,6 +67,7 @@ app.get('/callback', function (req, res) {
 
             var access_token = body.access_token,
                 refresh_token = body.refresh_token;
+            token = refresh_token;
 
             var options = {
                 url: 'https://api.spotify.com/v1/me',
@@ -150,7 +150,7 @@ app.get('/callback', function (req, res) {
                     energy = Math.round((energy / 50) * 100);
                     danceability = Math.round((danceability / 50) * 100);
                     tempo = Math.round(tempo / 50);
-                    tempoS = (1 / (tempo / 60)).toFixed(2); 
+                    tempoS = (1 / (tempo / 60)).toFixed(2);
 
                     musicData = {
                         energy: energy,
@@ -181,6 +181,11 @@ app.get('/callback', function (req, res) {
     });
 });
 
+
+app.get("/refreshtoken", function (req, res) {
+    if(token == null) res.send(null);
+    else res.send(token);
+});
 
 app.get("/userdata", function (req, res) {
     res.send(userData);

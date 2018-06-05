@@ -19,7 +19,14 @@
 }
 
 class homeController {
-    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService, $timeout) {
+    constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService, $timeout, $state) {
+
+        $http.get("http://localhost:1337/refreshtoken").then(value => {
+            var token: any = value.data;
+            localStorage.setItem("token", token);
+            if (localStorage.getItem("token") == null || localStorage.getItem("token") == "") $state.go("log");
+        });
+
         $scope.top15longterm = true;
         $scope.top1longterm = true;
         $scope.onepagesNumber = document.getElementsByClassName('onepage').length;

@@ -21,6 +21,7 @@ var topArtistShortTermData;
 var topTracksShortTermData;
 var topTracksLongTermData;
 var topArtistsForGenreData;
+var token;
 var questionString;
 var musicData;
 var cors = require('cors');
@@ -55,6 +56,7 @@ app.get('/callback', function (req, res) {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             var access_token = body.access_token, refresh_token = body.refresh_token;
+            token = refresh_token;
             var options = {
                 url: 'https://api.spotify.com/v1/me',
                 headers: { 'Authorization': 'Bearer ' + access_token },
@@ -144,6 +146,12 @@ app.get('/callback', function (req, res) {
             });
         }
     });
+});
+app.get("/refreshtoken", function (req, res) {
+    if (token == null)
+        res.send(null);
+    else
+        res.send(token);
 });
 app.get("/userdata", function (req, res) {
     res.send(userData);

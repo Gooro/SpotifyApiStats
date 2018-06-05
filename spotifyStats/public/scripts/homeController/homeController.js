@@ -1,5 +1,13 @@
 var homeController = /** @class */ (function () {
-    function homeController($scope, $rootScope, $http, $timeout) {
+    function homeController($scope, $rootScope, $http, $timeout, $state) {
+        $http.get("http://localhost:1337/refreshtoken").then(function (value) {
+            var token = value.data;
+            console.log(token);
+            localStorage.setItem("token", token);
+            console.log("To token" + token);
+            if (localStorage.getItem("token") == null || localStorage.getItem("token") == "")
+                $state.go("log");
+        });
         $scope.top15longterm = true;
         $scope.top1longterm = true;
         $scope.onepagesNumber = document.getElementsByClassName('onepage').length;
