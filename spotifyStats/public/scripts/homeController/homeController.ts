@@ -21,7 +21,7 @@
 class homeController {
     constructor($scope: homeInterface, $rootScope: angular.IRootScopeService, $http: angular.IHttpService, $timeout, $state) {
 
-        $http.get("http://localhost:1337/refreshtoken").then(value => {
+        $http.get("/refreshtoken").then(value => {
             var token: any = value.data;
             localStorage.setItem("token", token);
             if (localStorage.getItem("token") == null || localStorage.getItem("token") == "") $state.go("log");
@@ -33,13 +33,13 @@ class homeController {
         $scope.currentPage = 1;
         $scope.progress = ($scope.currentPage / $scope.onepagesNumber) * 100;
 
-        $http.get("http://localhost:1337/userdata").then(value => { $scope.userData = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/topartistdata").then(value => { $scope.topArtistData = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/toptracksdata").then(value => { $scope.topTracksData = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/toptracksdatashortterm").then(value => { $scope.topTracksSData = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/topartistdatashortterm").then(value => { $scope.topArtistSData = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/topartistsforgenre").then(value => { $scope.topGenre = value.data; console.log(value.data) });
-        $http.get("http://localhost:1337/averageoftracks").then(value => { $scope.tracksStyleData = value.data; console.log("Average: ", value.data) });
+        $http.get("/userdata").then(value => { $scope.userData = value.data; console.log(value.data) });
+        $http.get("/topartistdata").then(value => { $scope.topArtistData = value.data; console.log(value.data) });
+        $http.get("/toptracksdata").then(value => { $scope.topTracksData = value.data; console.log(value.data) });
+        $http.get("/toptracksdatashortterm").then(value => { $scope.topTracksSData = value.data; console.log(value.data) });
+        $http.get("/topartistdatashortterm").then(value => { $scope.topArtistSData = value.data; console.log(value.data) });
+        $http.get("/topartistsforgenre").then(value => { $scope.topGenre = value.data; console.log(value.data) });
+        $http.get("/averageoftracks").then(value => { $scope.tracksStyleData = value.data; console.log("Average: ", value.data) });
 
 
 

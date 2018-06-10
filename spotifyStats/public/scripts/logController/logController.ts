@@ -5,7 +5,7 @@
 class logController {
     constructor($scope: logInterface, $http: angular.IHttpService, $rootScope: angular.IRootScopeService, $window) {
         $scope.login = () => {
-            $http.get("http://localhost:1337/login").then(
+            $http.get("/login").then(
                 value => $window.location.href = value.data,
                 err => console.error(err)
             );

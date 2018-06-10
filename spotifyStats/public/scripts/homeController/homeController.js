@@ -1,10 +1,8 @@
 var homeController = /** @class */ (function () {
     function homeController($scope, $rootScope, $http, $timeout, $state) {
-        $http.get("http://localhost:1337/refreshtoken").then(function (value) {
+        $http.get("/refreshtoken").then(function (value) {
             var token = value.data;
-            console.log(token);
             localStorage.setItem("token", token);
-            console.log("To token" + token);
             if (localStorage.getItem("token") == null || localStorage.getItem("token") == "")
                 $state.go("log");
         });
@@ -13,13 +11,13 @@ var homeController = /** @class */ (function () {
         $scope.onepagesNumber = document.getElementsByClassName('onepage').length;
         $scope.currentPage = 1;
         $scope.progress = ($scope.currentPage / $scope.onepagesNumber) * 100;
-        $http.get("http://localhost:1337/userdata").then(function (value) { $scope.userData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/topartistdata").then(function (value) { $scope.topArtistData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/toptracksdata").then(function (value) { $scope.topTracksData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/toptracksdatashortterm").then(function (value) { $scope.topTracksSData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/topartistdatashortterm").then(function (value) { $scope.topArtistSData = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/topartistsforgenre").then(function (value) { $scope.topGenre = value.data; console.log(value.data); });
-        $http.get("http://localhost:1337/averageoftracks").then(function (value) { $scope.tracksStyleData = value.data; console.log("Average: ", value.data); });
+        $http.get("/userdata").then(function (value) { $scope.userData = value.data; console.log(value.data); });
+        $http.get("/topartistdata").then(function (value) { $scope.topArtistData = value.data; console.log(value.data); });
+        $http.get("/toptracksdata").then(function (value) { $scope.topTracksData = value.data; console.log(value.data); });
+        $http.get("/toptracksdatashortterm").then(function (value) { $scope.topTracksSData = value.data; console.log(value.data); });
+        $http.get("/topartistdatashortterm").then(function (value) { $scope.topArtistSData = value.data; console.log(value.data); });
+        $http.get("/topartistsforgenre").then(function (value) { $scope.topGenre = value.data; console.log(value.data); });
+        $http.get("/averageoftracks").then(function (value) { $scope.tracksStyleData = value.data; console.log("Average: ", value.data); });
         $rootScope.$on("$viewContentLoaded", function () {
             window.AniJS.run();
             var mainTilt = $(".mainTilt");

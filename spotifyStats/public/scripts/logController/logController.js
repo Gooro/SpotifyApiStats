@@ -1,7 +1,7 @@
 var logController = /** @class */ (function () {
     function logController($scope, $http, $rootScope, $window) {
         $scope.login = function () {
-            $http.get("http://localhost:1337/login").then(function (value) { return $window.location.href = value.data; }, function (err) { return console.error(err); });
+            $http.get("/login").then(function (value) { return $window.location.href = value.data; }, function (err) { return console.error(err); });
         };
     }
     return logController;
